@@ -29,7 +29,7 @@ bld/
 [Cc]ontent/
 
 # front end build results
-[Aa]assets/dist/
+[Aa]ssets/dist/
 
 # Visual Studio 2015 cache/options directory
 .vs/
