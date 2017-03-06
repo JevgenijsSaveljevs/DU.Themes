@@ -259,7 +259,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HtmlHeplers\HtmlHelperExtensions.cs" />
     <Compile Include="Infrastructure\Comparers\Comparers.cs" />
     <Compile Include="Infrastructure\Comparers\ModelBaseComparer.cs" />
     <Compile Include="Infrastructure\Excel\ExcelHelper.cs" />
@@ -369,7 +368,6 @@
     <Content Include="Views\Request\TeacherRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Infrastructure\NewFolder1\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Base\" />
@@ -383,7 +381,6 @@
     <Content Include="Views\Request\NewRequest.cshtml" />
     <Content Include="Views\Themes\Index.cshtml" />
     <Content Include="Views\Themes\Edit.cshtml" />
-    <Content Include="webpack.config.js" />
     <None Include="Properties\PublishProfiles\asd.pubxml" />
     <Content Include="Views\Request\Edit.cshtml" />
     <Content Include="Views\Maintenance\Import.cshtml" />
