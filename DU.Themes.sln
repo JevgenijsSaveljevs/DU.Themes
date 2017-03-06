@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DU.Themes", "DU.Themes\DU.Themes.csproj", "{FB005DBE-E24A-417A-8B78-1DD0223747F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DU.Themes.Tests", "DU.Themes.Tests\DU.Themes.Tests.csproj", "{A34D8F4A-7087-45E7-9FE5-30BC0483FF20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Du.Themes.Excel", "Du.Themes.Excel\Du.Themes.Excel.csproj", "{09FFB2DE-C092-420F-9CD5-6BB2D61C58ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelTest", "ExcelTest\ExcelTest.csproj", "{6B6CB787-EF72-487E-8B37-726DB65A65EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DU.Themes.Configuration", "DU.Themes.Configuration\DU.Themes.Configuration.csproj", "{59BC08F7-CCF3-477C-A0F8-13B8CCDDCD80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericSortingTest", "GenericSortingTest\GenericSortingTest.csproj", "{CDF512E0-0E0D-4289-B546-691D3BB2F88B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DU.Themes.Entities", "DU.Themes.Entities\DU.Themes.Entities.csproj", "{DB6E8AA9-D12D-4757-B63F-2B45284D5E1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB005DBE-E24A-417A-8B78-1DD0223747F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB005DBE-E24A-417A-8B78-1DD0223747F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB005DBE-E24A-417A-8B78-1DD0223747F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB005DBE-E24A-417A-8B78-1DD0223747F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A34D8F4A-7087-45E7-9FE5-30BC0483FF20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A34D8F4A-7087-45E7-9FE5-30BC0483FF20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A34D8F4A-7087-45E7-9FE5-30BC0483FF20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A34D8F4A-7087-45E7-9FE5-30BC0483FF20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09FFB2DE-C092-420F-9CD5-6BB2D61C58ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09FFB2DE-C092-420F-9CD5-6BB2D61C58ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09FFB2DE-C092-420F-9CD5-6BB2D61C58ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09FFB2DE-C092-420F-9CD5-6BB2D61C58ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B6CB787-EF72-487E-8B37-726DB65A65EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B6CB787-EF72-487E-8B37-726DB65A65EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B6CB787-EF72-487E-8B37-726DB65A65EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B6CB787-EF72-487E-8B37-726DB65A65EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59BC08F7-CCF3-477C-A0F8-13B8CCDDCD80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59BC08F7-CCF3-477C-A0F8-13B8CCDDCD80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59BC08F7-CCF3-477C-A0F8-13B8CCDDCD80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59BC08F7-CCF3-477C-A0F8-13B8CCDDCD80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDF512E0-0E0D-4289-B546-691D3BB2F88B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDF512E0-0E0D-4289-B546-691D3BB2F88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDF512E0-0E0D-4289-B546-691D3BB2F88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDF512E0-0E0D-4289-B546-691D3BB2F88B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB6E8AA9-D12D-4757-B63F-2B45284D5E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB6E8AA9-D12D-4757-B63F-2B45284D5E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB6E8AA9-D12D-4757-B63F-2B45284D5E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB6E8AA9-D12D-4757-B63F-2B45284D5E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,295 @@
+﻿@{ ViewBag.Title = "Users"; }
+
+<section class="content-header">
+    <h1>
+        Users
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+    </ol>
+</section>
+<section class="content" id="app">
+    <div class="box" id="vue-app">
+        <div class="box-header with-border">
+            <div>
+                <div class="sidebar-form pull-right col-md-3">
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" name="q" id="search-input" class="form-control" placeholder="Search..." v-model="search">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-body">
+            <div>
+                <div is="grid-template" edit-url="@Url.Action("Edit", "Maintenance")" fetch-url="" :search-text="search"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/x-template" id="grid-template">
+    <div>
+        <table class="table table-striped">
+            <thead class="thead-inverse">
+                <tr>
+                    <table-th thName="Vards, Uzvards" :fnSortBy="sortBy" thSortKey="LastName" :thActiveSortKey="SortKey" :thSortOrder="SortOrder"></table-th>
+                    <table-th thName="Email" :fnSortBy="sortBy" thSortKey="Email" :thActiveSortKey="SortKey" :thSortOrder="SortOrder"></table-th>
+                    <table-th thName="Id" :fnSortBy="sortBy" thSortKey="StudentIdentifier" :thActiveSortKey="SortKey" :thSortOrder="SortOrder"></table-th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in list">
+                    <td>{{item.FullName}}</td>
+                    <td>{{item.Email}}</td>
+                    <td>{{item.StudentIdentifier}}</td>
+                    @*<td><a v-bind:href="{{'@Url.Action("Edit", "Request")' + '/' + item.Id }}" href="#" class="btn btn-info">Edit</a></td>*@
+                    <td><a v-bind:href="editUrl+ '/'+item.UserName" class="btn btn-info">Edit</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-center" v-if="loadMoreEnabled">
+            <a href="#" v-on:click="loadMore">Load More</a>
+        </div>    
+    </div>
+</script>
+<script type="text/x-template" id="header-template">
+    <th @@click="sortBy">
+        {{ thName }}
+        @*<i v-bind:class="[ isActive ? 'text-black': 'text-gray', 'text-black']" class="glyphicon glyphicon-sort"></i>*@
+        <i v-bind:class="[ {'text-gray' : !isActive}, glyphicon]"></i>
+    </th>
+</script>
+
+@*// Should be moved to JS file!*@ @section scripts{
+    @*<script src="~/Scripts/request.js" type="text/javascript"></script>*@
+    <script type="text/javascript">
+        var elementId = "app";
+
+        var tableTemplate = {
+            template: '#grid-template',
+            props: ['editUrl', 'searchText'],
+            data: function () {
+                return {
+                    SortKey: "",
+                    SortOrder: -1, // i.e. desc
+                    list: [],
+                    Take: 15,
+                    Skip: 0,
+                    isInRequest: null,
+                    Total: 0
+                }
+            },
+
+            watch: {
+                searchText: function (newVal) {
+                    var self = this;
+
+                    if (this.isInRequest !== null) {
+                        clearTimeout(this.isInRequest);
+                        this.isInRequest = null;
+                    }
+
+                    self.isInRequest = setTimeout(function () {
+                        self.resetSkip();
+                        self.fetchData();
+                    }, 500);
+
+                }
+            },
+
+
+            created: function () {
+                this.fetchData();
+            },
+            
+            computed: {
+                // a computed getter
+                loadMoreEnabled: function () {
+                    return this.Skip + this.list.length < this.Total;
+                }
+            },
+
+            methods: {
+                sortBy: function (key) {
+                    if (key === this.SortKey) {
+                        //if (this.sortOrder === 1) {
+                        this.SortOrder = this.SortOrder * -1;
+                        //}
+                    }
+                    else {
+                        this.SortKey = key;
+                        this.SortOrder = -1; // i.e. desc
+                    }
+
+                    this.resetSkip()
+                    this.fetchData();
+                },
+
+                loadMore: function (evt) {
+                    evt.preventDefault();
+                    this.Skip += this.Take;
+                    this.fetchData();
+
+                    return false;
+                },
+                resetSkip: function(){
+                    this.Skip = 0;
+                },
+
+                fetchData: function () {
+                    var _url = "@Url.HttpRouteUrl("DefaultApi", new {Controller = "Person", Action = "All"})";   // url should be in props!
+                    var self = this;
+
+                    // this should be part of another script file
+                    var opts = {
+                        lines: 11 // The number of lines to draw
+                    , length: 6 // The length of each line
+                    , width: 13 // The line thickness
+                    , radius: 46 // The radius of the inner circle
+                    , scale: 0.75 // Scales overall size of the spinner
+                    , corners: 1 // Corner roundness (0..1)
+                    , color: '#000' // #rgb or #rrggbb or array of colors
+                    , opacity: 0.25 // Opacity of the lines
+                    , rotate: 0 // The rotation offset
+                    , direction: 1 // 1: clockwise, -1: counterclockwise
+                    , speed: 1 // Rounds per second
+                    , trail: 36 // Afterglow percentage
+                    , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+                    , zIndex: 2e9 // The z-index (defaults to 2000000000)
+                    , className: 'spinner' // The CSS class to assign to the spinner
+                    , top: '50%' // Top position relative to parent
+                    , left: '50%' // Left position relative to parent
+                    , shadow: false // Whether to render a shadow
+                    , hwaccel: true // Whether to use hardware acceleration
+                    , position: 'absolute' // Element positioning
+                    }
+                    var target = document.getElementById('vue-app')
+                    self.spinner = new Spinner(opts).spin(target);
+
+                    $.ajax({
+                        url: _url,
+                        method: "POST",
+                        data: JSON.stringify({
+                            SortKey: self.SortKey,
+                            Take: self.Take,
+                            Skip: self.Skip,
+                            SortOrder: self.SortOrder,
+                            Search: self.searchText
+                        }),
+                        contentType: "application/json; charset=utf-8"
+                    }).done(function (response) {
+
+                        if (self.Skip === 0) {
+                            self.list = response.Data;
+                        }
+                        else {
+                            for (var i = 0; i < response.Data.length; i++) {
+                                self.list.push(response.Data[i]);
+                            }
+                         //   =  self.list.concat(response.Data);
+                        }
+
+                        self.Total = response.Total;
+                    }).error(function (xhr, param1, param2, param3) {
+                        toastr.error(param2);
+                        console.log(xhr, param1, param2, param3);
+                    }).always(function () {
+                        self.spinner.stop();
+                        self.isInRequest = null;
+                     //   document.getElementById("search-input").focus();
+                    });
+                },
+            }
+        };
+
+        var tableTh = {
+            template: '#header-template',
+            props: ['thName', 'fnSortBy', 'thSortKey', 'thActiveSortKey', 'thSortOrder'],
+            data: function () {
+                return {
+
+                    SortKey: "",
+
+                    list: [],
+
+                    filter: {
+                        SortKey: "",
+                        Take: 20,
+                        Skip: 0,
+                        direction: -1
+                    },
+                }
+            },
+
+            methods: {
+                sortBy: function () {
+                    this.fnSortBy(this.thSortKey)
+                },
+            },
+
+            computed: {
+
+                isActive: function () {
+                    return this.thActiveSortKey === this.thSortKey;
+                },
+
+                glyphicon: function () {
+
+                    if (this.thActiveSortKey !== this.thSortKey) {
+                        return 'glyphicon glyphicon-sort';
+                    }
+
+                    switch (this.thSortOrder) {
+                        case -1: return 'glyphicon glyphicon-sort-by-attributes';
+                        case 1: return 'glyphicon glyphicon-sort-by-attributes-alt';
+                        default: return 'glyphicon glyphicon-sort';
+                    }
+                }
+            }
+        };
+
+        Vue.component('grid-template', tableTemplate);
+        Vue.component('table-th', tableTh);
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: "Hello from vue",
+                search: ""
+            },
+            methods: {
+                searchChnaged: function () {
+                    // alert('aa');
+                }
+            }
+        });
+
+        console.log(app);
+
+
+        @*document.getElementById("secret").onclick = function () {
+            var url = "@Url.HttpRouteUrl("DefaultApi", new { controller = "requestApi", action = "test" })";
+
+            $.ajax({
+                url: url,
+                method: "POST",
+                contentType: "application/json; UTF8",
+            }).done(function () {
+                toastr.info('created');
+            }).error(function (xhr, param1, param2, param3) {
+                toastr.error(param2);
+                console.log(xhr, param1, param2, param3);
+            })
+
+            //alert(url);
+        }*@
+
+
+    </script> }

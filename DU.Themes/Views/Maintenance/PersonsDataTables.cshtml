@@ -1,0 +1,62 @@
+﻿@{ ViewBag.Title = "Users"; }
+
+<section class="content-header">
+    <h1>
+        Users
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+    </ol>
+</section>
+<section class="content" id="app">
+    <div class="box" id="vue-app">
+        <div class="box-header with-border">
+            <div>
+            </div>
+        </div>
+        <div class="box-body">
+            <div>
+                <table id="table" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>@Resources.StudentIdentifier</th>
+                            <th>@Resources.FirstName</th>
+                            <th>@Resources.LastName</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table').DataTable({
+                "language": dt.language,
+                "ajax": {
+                    "method": "POST",
+                    "url": "@Url.HttpRouteUrl("GetPersons", new { })"
+                },
+                "processing": true,
+                "serverSide": true,
+                "columns": [
+                    { "data": "StudentIdentifier", name: "Identifier" },
+                    { "data": "FirstName" },
+                    { "data": "LastName" },
+                    {
+                        "sortable": false,
+                        render: function (data, type, row, meta) { return '<a href=' + "@Url.Action("Edit", "Maintenance")" + "/" + row.StudentIdentifier + ' class="btn btn-info">' + 'Edit' + '</a>'; }
+                    }
+                ]
+            });
+        });
+    </script>
+}
+

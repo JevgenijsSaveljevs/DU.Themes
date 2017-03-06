@@ -1,0 +1,210 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<section class="content-header">
+    <h1>
+        Edit
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+    </ol>
+</section>
+<section class="content">
+
+    <div class="col-md-12">
+        <div class="col-md-8" id="vue-app">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 v-text="entity.FullName"></h3>
+                </div>
+                <div class="box-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputName" class="col-sm-2 control-label">Vārds</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputName" placeholder="Vārds" v-model="entity.FirstName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputName" class="col-sm-2 control-label">Uzvārds</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputName" placeholder="Uzvārds" v-model="entity.LastName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.Email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">StudentIdentifier</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.StudentIdentifier">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">ProgramName</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.ProgramName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">ProgramLevel</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.ProgramLevel">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">StudyForm</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.StudyForm">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">Year</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.Year">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">Is Admin</label>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" v-model="entity.IsAdmin">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">Is Teacher</label>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" v-model="entity.IsTeacher">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">Is Student</label>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" v-model="entity.IsStudent">
+                                </label>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="box-footer">
+                    <div class="pull-left">
+                        <a class="btn btn-default" href="@Url.Action("Persons", "Maintenance")">Cancel</a>
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-info" v-on:click="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section scripts{
+    <script type="text/javascript">
+
+        function loadRecord(callback) {
+            $.ajax({
+                url: "@Url.HttpRouteUrl("DefaultApi", new { Controller = "Person", Action = "Person", userId = ViewBag.UserId })",
+                method: "GET",
+                contentType: "application/json; UTF8",
+            }).done(function (data) {
+                console.log('data', data);
+                callback(null, data);
+            }).error(function (xhr, param1, param2, param3) {
+                toastr.error(param2);
+                console.log(xhr, param1, param2, param3);
+            }).always(function () {
+
+            });
+        }
+
+        async.parallel([loadRecord], function (err, result) {
+
+            var app = new Vue({
+                el: '#vue-app',
+                data: function () {
+                    return {
+                        entity: result[0]
+                    }
+                },
+                methods: {
+                    submit: function () {
+                        var self = this;
+
+                        $.ajax({
+                            url: "@Url.HttpRouteUrl("DefaultApi", new { Controller = "Person", Action = "Update" })",
+                            method: "POST",
+                            data: JSON.stringify(self.entity),
+                            contentType: "application/json; charset=utf-8"
+                        }).done(function (data) {
+                            self.refresh();
+                        }).error(function (xhr, param1, param2, param3) {
+                            try {
+                                var error = JSON.parse(xhr.responseText);
+
+                                if (error.ValidationErrors) {
+                                    $.each(error.ValidationErrors, function (idx, valErr) {
+                                        toastr.error(valErr.ErrorMessage);
+                                    })
+                                }
+
+                                if (error.Message) {
+                                    toastr.error(error.Message);
+                                }
+
+                            } catch (err) {
+                                toastr.error(param2);
+
+                            }
+
+
+                            console.log(xhr, param1, param2, param3);
+                        }).always(function () {
+
+                        });
+                    },
+
+                    refresh: function () {
+
+                        var self = this;
+
+                        $.ajax({
+                            url: "@Url.HttpRouteUrl("DefaultApi", new { Controller = "Person", Action = "Person", userId = ViewBag.UserId })",
+                            method: "GET",
+                            contentType: "application/json; UTF8",
+                        }).done(function (data) {
+                            self.entity = data;
+                            toastr.success("Saglabats");
+                        }).error(function (xhr, param1, param2, param3) {
+                            toastr.error(param2);
+                            console.log(xhr, param1, param2, param3);
+                        }).always(function () {
+
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+}
