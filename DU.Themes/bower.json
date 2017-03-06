@@ -11,6 +11,9 @@
     "datatables": "^1.10.13",
     "select2": "^4.0.3",
     "toastr": "^2.1.3",
-    "vue": "^2.2.1"
+    "vue": "^2.2.1",
+    "select2-bootstrap-theme": "^0.1.0-beta.9",
+    "font-awesome": "^4.7.0",
+    "glyphicons-halflings": "*"
   }
 }
