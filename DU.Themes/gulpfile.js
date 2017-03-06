@@ -1,4 +1,4 @@
-﻿/// <binding ProjectOpened='watch' />
+﻿/// <binding ProjectOpened='watch, fonts, css-bundle' />
 'use strict';
 
 var gulp = require('gulp'),
