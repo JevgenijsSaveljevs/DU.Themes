@@ -321,14 +321,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\src\components\lalala.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="gulpfile.js" />
-    <Content Include="gulpfile2.js" />
-    <Content Include="package.json" />
-    <Content Include="assets\src\common.js" />
-    <Content Include="assets\src\components\select2-components.js" />
-    <Content Include="assets\src\components\select2-options-factory.js" />
+    <EmbeddedResource Include="gulpfile.js" />
+    <EmbeddedResource Include="package.json" />
+    <EmbeddedResource Include="assets\src\**" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -374,7 +372,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="bower.json" />
+    <EmbeddedResource Include="bower.json" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\People\Teachers.cshtml" />
     <Content Include="Views\Request\Index.cshtml" />
