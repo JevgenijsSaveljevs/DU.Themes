@@ -112,7 +112,7 @@ namespace DU.Themes.Controllers
             //    });
             //}
 
-            if (model.LoginName == ConfigurationManager.AppSettings.Get("SysAdmEmail"))
+            if (model.LoginName.Equals(ConfigurationManager.AppSettings.Get("SysAdmEmail"), System.StringComparison.InvariantCultureIgnoreCase))
             {
                 var admin = UserManager.FindByEmail(ConfigurationManager.AppSettings.Get("SysAdmEmail"));
 

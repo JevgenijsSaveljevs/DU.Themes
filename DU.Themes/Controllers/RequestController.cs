@@ -33,5 +33,13 @@ namespace DU.Themes.Controllers
 
             return View();
         }
+
+        [Authorize(Roles = Roles.Teacher)]
+        public ActionResult Respond(string Id)
+        {
+            ViewBag.Id = Id;
+
+            return View();
+        }
     }
 }

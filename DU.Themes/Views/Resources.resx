@@ -177,4 +177,13 @@
   <data name="YearName" xml:space="preserve">
     <value>Gāds</value>
   </data>
+  <data name="CancelRequest" xml:space="preserve">
+    <value>Atcelt piekeikumu</value>
+  </data>
+  <data name="CreateTheme" xml:space="preserve">
+    <value>Apstiprināt piteikumu un izveidot tēmu</value>
+  </data>
+  <data name="NeedImprovements" xml:space="preserve">
+    <value>Vajag labojumi</value>
+  </data>
 </root>

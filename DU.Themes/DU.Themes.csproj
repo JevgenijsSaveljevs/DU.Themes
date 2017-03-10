@@ -321,7 +321,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\src\components\lalala.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="gulpfile.js" />
@@ -391,6 +390,7 @@
     <Content Include="Views\Maintenance\StudyYearsList.cshtml" />
     <Content Include="Views\Maintenance\CreateYear.cshtml" />
     <Content Include="Views\Maintenance\EditYear.cshtml" />
+    <Content Include="Views\Request\Respond.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702261520338_Initial.resx">

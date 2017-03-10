@@ -70,6 +70,15 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Atcelt piekeikumu.
+        /// </summary>
+        public static string CancelRequest {
+            get {
+                return ResourceManager.GetString("CancelRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Izveidot.
         /// </summary>
         public static string Create {
@@ -84,6 +93,15 @@ namespace DU.Themes.Views {
         public static string CreatedOn {
             get {
                 return ResourceManager.GetString("CreatedOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apstiprināt piteikumu un izveidot tēmu.
+        /// </summary>
+        public static string CreateTheme {
+            get {
+                return ResourceManager.GetString("CreateTheme", resourceCulture);
             }
         }
         
@@ -138,6 +156,15 @@ namespace DU.Themes.Views {
         public static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vajag labojumi.
+        /// </summary>
+        public static string NeedImprovements {
+            get {
+                return ResourceManager.GetString("NeedImprovements", resourceCulture);
             }
         }
         

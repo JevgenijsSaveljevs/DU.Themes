@@ -190,6 +190,37 @@ namespace DU.Themes.Api
             }
         }
 
+        [HttpGet]
+        [Authorize(Roles = Roles.Teacher)]
+        [Route("teacher/request", Name = RouteName.GetTeacherRequests)]
+        public IHttpActionResult GetTeacherRequest(long Id)
+        {
+            using (var ctx = new DbContext())
+            {
+                var entity = ctx.Requests
+                    .Include("Student")
+                    .Include("Teacher")
+                    .Include("Start")
+                    .Include("End")
+                    .Include("Reviewer")
+                    .ById(Id);
+
+                if (entity == null)
+                {
+                    return this.NotFound();
+                }
+
+                if (entity.TeacherId != this.User.Identity.GetUserId<long>())
+                {
+                    return this.BadRequest();
+                }
+
+                var model = entity.CastTo<Request, RequestModel>();
+
+                return this.Ok(model);
+            }
+        }
+
         private IQueryable<Request> LimitToSelfIfStudent(DbQuery<Request> requests)
         {
             if (this.User.IsInRole(Roles.Student))

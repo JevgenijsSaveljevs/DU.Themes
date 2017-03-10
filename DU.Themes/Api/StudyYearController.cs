@@ -2,12 +2,10 @@
 using DU.Themes.Infrastructure;
 using DU.Themes.Models;
 using DU.Themes.Validaiton;
-using System.Threading.Tasks;
-using System.Web.Http;
 using System;
 using System.Linq;
-using System.Web.Http.OData;
-using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace DU.Themes.Api
 {
