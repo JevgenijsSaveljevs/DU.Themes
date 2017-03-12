@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="RequestStatus_Accepted" xml:space="preserve">
+    <value>Pieteikums ir apstiprinats</value>
+  </data>
   <data name="RequestStatus_AcceptedBySupervisor" xml:space="preserve">
     <value>Accepted By Supervisor</value>
   </data>
   <data name="RequestStatus_Cancelled" xml:space="preserve">
-    <value>Cancelled</value>
+    <value>Pieteikums ir atcelts</value>
   </data>
   <data name="RequestStatus_NeedImprovements" xml:space="preserve">
-    <value>Need Improvements</value>
+    <value>Vajag labojumi</value>
   </data>
   <data name="RequestStatus_New" xml:space="preserve">
-    <value>New</value>
-  </data>
-  <data name="RequestStatus_ThemesAccepted" xml:space="preserve">
-    <value>Themes Accepted</value>
+    <value>Jauns Pieteikums</value>
   </data>
 </root>

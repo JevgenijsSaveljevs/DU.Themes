@@ -5,7 +5,7 @@ namespace DU.Themes.Entities
     /// <summary>
     /// Base Entity class
     /// </summary>
-    public abstract class EntityBase
+    public abstract class EntityBase : IDentifiable
     {
         /// <summary>
         /// Identifier

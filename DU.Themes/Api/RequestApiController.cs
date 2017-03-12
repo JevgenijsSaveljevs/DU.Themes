@@ -1,13 +1,13 @@
 ﻿using DU.Themes.Entities;
 using DU.Themes.Infrastructure;
 using DU.Themes.Models;
+using DU.Themes.Validaiton;
 using DU.Themes.Validaiton.Request;
 using DU.Themes.ValidaitonApiFilter;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -84,11 +84,7 @@ namespace DU.Themes.Api
         {
             using (var ctx = new DbContext())
             {
-                var requests = ctx.Requests
-                    .Include("End")
-                    .Include("Start")
-                    .Include("Teacher")
-                    .Include("Student");
+                var requests = ctx.Requests.AsEagerRequests();
 
                 var userQuery = this.LimitToSelfIfStudent(requests);
 
@@ -127,10 +123,7 @@ namespace DU.Themes.Api
             {
                 var id = this.User.Identity.GetUserId<long>();
                 var requests = ctx.Requests
-                    .Include("End")
-                    .Include("Start")
-                    .Include("Teacher")
-                    .Include("Student")
+                    .AsEagerRequests()
                     .Where(x => x.TeacherId == id);
 
                 var sortBy = request.OrderBy.Contains("FullName") ? request.OrderBy.Replace("FullName", "FirstName") : request.OrderBy;
@@ -166,13 +159,7 @@ namespace DU.Themes.Api
         {
             using (var ctx = new DbContext())
             {
-                var entity = ctx.Requests
-                    .Include("Student")
-                    .Include("Teacher")
-                    .Include("Start")
-                    .Include("End")
-                    .Include("Reviewer")
-                    .ById(Id);
+                var entity = ctx.Requests.AsEagerRequests().ById(Id);
 
                 if (entity == null)
                 {
@@ -197,13 +184,7 @@ namespace DU.Themes.Api
         {
             using (var ctx = new DbContext())
             {
-                var entity = ctx.Requests
-                    .Include("Student")
-                    .Include("Teacher")
-                    .Include("Start")
-                    .Include("End")
-                    .Include("Reviewer")
-                    .ById(Id);
+                var entity = ctx.Requests.AsEagerRequests().ById(Id);
 
                 if (entity == null)
                 {
@@ -221,7 +202,7 @@ namespace DU.Themes.Api
             }
         }
 
-        private IQueryable<Request> LimitToSelfIfStudent(DbQuery<Request> requests)
+        private IQueryable<Request> LimitToSelfIfStudent(IQueryable<Request> requests)
         {
             if (this.User.IsInRole(Roles.Student))
             {
@@ -266,32 +247,6 @@ namespace DU.Themes.Api
                     tran.Commit();
                 }
             }
-
-            //var user = this.UserManager.FindById(Convert.ToInt64(this.User.Identity.GetUserId()));
-
-            //var requestDB = new Request
-            //{
-            //    Student = user,
-            //    CreatedOn = DateTime.UtcNow,
-            //    Teacher = this._userManager.FindById(Convert.ToInt64(request?.Teacher?.Id)),
-            //    ThemeLV = request.ThemeLV,
-            //    ThemeENG = request.ThemeENG,
-            //    Status = RequestStatus.New
-            //};
-
-            //var ctx = new ApplicationDbContext();
-            //using (var tran = ctx.Database.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
-            //{
-            //    // TODO: Validation!
-            //    request.Validate(new NewRequestValidator(ctx));
-            //    ctx.Requests.Add(requestDB);
-
-            //    await ctx.SaveChangesAsync().ContinueWith((Task<int> result) =>
-            //    {
-            //        tran.Commit();
-            //    });
-
-            //}
         }
 
         private void PreapareEntity(Request requestDB, RequestModel request, DbContext ctx)
@@ -318,20 +273,173 @@ namespace DU.Themes.Api
             {
                 using (var tran = ctx.BeginTran())
                 {
-                    var requestDB = ctx
-                        .Requests
-                        .Include("Start")
-                        .Include("End")
-                        .Include("Teacher")
-                        .Include("Student")
-                        .Include("Reviewer")
-                        .ById(request.Id);
+                    var requestDB = ctx.Requests.AsEagerRequests().ById(request.Id);
 
                     requestDB.Validate(new RequestPersonsNotChangedValidator(ctx, request));
 
                     this.MapRequest(requestDB, request, ctx);
                     requestDB.Touch();
                     requestDB.Validate(new RequestUpdateByStudentValidator(ctx));
+
+                    await ctx.SaveChangesAsync();
+                    tran.Commit();
+
+                    return this.Ok();
+                }
+            }
+        }
+
+        [HttpPost]
+        [Route("api/teacher/request/update", Name = RouteName.UpdateRequestTeacher)]
+        [Authorize(Roles = Roles.Teacher)]
+        public async Task<IHttpActionResult> UpdateRequestByTeacher(RequestModel request)
+        {
+            var userId = this.User.Identity.GetUserId<long>();
+
+            using (var ctx = new DbContext())
+            {
+                using (var tran = ctx.BeginTran())
+                {
+                    var requestDB = ctx.Requests.AsEagerRequests().ById(request.Id);
+
+                    requestDB.Validate(new RequestPersonsNotChangedValidator(ctx, request));
+
+                    this.MapRequest(requestDB, request, ctx);
+                    requestDB.Touch();
+                    requestDB.Validate(new RequestUpdateByStudentValidator(ctx));
+
+                    await ctx.SaveChangesAsync();
+                    tran.Commit();
+
+                    return this.Ok();
+                }
+            }
+        }
+
+        [HttpPost]
+        [Route("api/teacher/themes/create", Name = RouteName.CreateTheme)]
+        [Authorize(Roles = Roles.Teacher)]
+        public async Task<IHttpActionResult> CreateTheme(RequestModel request)
+        {
+            var userId = this.User.Identity.GetUserId<long>();
+
+            using (var ctx = new DbContext())
+            {
+                using (var tran = ctx.BeginTran())
+                {
+                    var requestDB = ctx.Requests.AsEagerRequests().ById(request.Id);
+
+                    requestDB.Validate(new RequestBeforeCreateThemeValidator(ctx));                  
+
+                    var theme = requestDB.CastTo<Request, Theme>(ctx);
+                    theme.Active = true;
+                    this.MapTheme(theme, requestDB, ctx);
+                    theme.Validate(new ThemeValidatorBase(ctx));
+                    ctx.Themes.Add(theme);
+                    ctx.Requests.Remove(requestDB);
+
+                    await ctx.SaveChangesAsync();
+                    tran.Commit();
+
+                    return this.Ok();
+                }
+            }
+        }
+
+        private void MapTheme(Theme theme, Request request, DbContext ctx)
+        {
+            theme.Teacher = request.Teacher.GetById<Person, Person>(ctx);
+            theme.Student = request.Student.GetById<Person, Person>(ctx);
+            theme.Reviewer = request.Reviewer.GetById<Person, Person>(ctx);
+            theme.Start = request.Start.GetById<StudyYear, StudyYear>(ctx);
+            theme.End = request.End.GetById<StudyYear, StudyYear>(ctx);
+        }
+
+        [HttpPost]
+        [Route("api/teacher/request/need-improvements", Name = RouteName.RequestNeedImprovements)]
+        [Authorize(Roles = Roles.Teacher)]
+        public async Task<IHttpActionResult> MarkAsNeedImprovements(RequestModel request)
+        {
+            var userId = this.User.Identity.GetUserId<long>();
+
+            using (var ctx = new DbContext())
+            {
+                using (var tran = ctx.BeginTran())
+                {
+                    var requestDB = ctx.Requests.AsEagerRequests().ById(request.Id);
+
+                    requestDB.Validate(new RequestPersonsNotChangedValidator(ctx, request));
+                    requestDB.Validate(new RequestNeedImprovementsValidator(ctx));
+
+                    requestDB.Status = RequestStatus.NeedImprovements;
+                    requestDB.Touch();
+                    requestDB.Validate(new RequestUpdateByStudentValidator(ctx));
+
+                    await ctx.SaveChangesAsync();
+                    tran.Commit();
+
+                    return this.Ok();
+                }
+            }
+        }
+
+        [HttpPost]
+        [Route("api/teacher/request/reject", Name = RouteName.RejectByTeacher)]
+        [Authorize(Roles = Roles.Teacher)]
+        public async Task<IHttpActionResult> RejectByTeacher(RequestModel request)
+        {
+            var userId = this.User.Identity.GetUserId<long>();
+
+            using (var ctx = new DbContext())
+            {
+                using (var tran = ctx.BeginTran())
+                {
+                    var requestDB = ctx.Requests.AsEagerRequests().ById(request.Id);
+
+                    if (requestDB.TeacherId != userId)
+                    {
+                        return this.BadRequest();
+                    }
+
+                    requestDB.Validate(new RequestPersonsNotChangedValidator(ctx, request));
+                    requestDB.Validate(new RequestNeedImprovementsValidator(ctx));
+
+                    requestDB.Status = RequestStatus.Cancelled;
+                    requestDB.Touch();
+                    //requestDB.Validate(new RequestUpdateByStudentValidator(ctx));
+
+                    await ctx.SaveChangesAsync();
+                    tran.Commit();
+
+                    return this.Ok();
+                }
+            }
+        }
+
+        [HttpPost]
+        [Route("api/student/request/reject", Name = RouteName.RejectByStudent)]
+        [Authorize(Roles = Roles.Student)]
+        public async Task<IHttpActionResult> RejectByStudent(RequestModel request)
+        {
+            var userId = this.User.Identity.GetUserId<long>();
+
+            using (var ctx = new DbContext())
+            {
+                using (var tran = ctx.BeginTran())
+                {
+                    var requestDB = ctx.Requests.AsEagerRequests().ById(request.Id);
+
+                    if (requestDB.StudentId != userId)
+                    {
+                        return this.BadRequest();
+                    }
+
+                    requestDB.Validate(new RequestPersonsNotChangedValidator(ctx, request));
+                    requestDB.Validate(new RequestNeedImprovementsValidator(ctx));
+
+                    requestDB.Status = RequestStatus.Cancelled;
+                    requestDB.Touch();
+                  //  requestDB.Validate(new RequestUpdateByStudentValidator(ctx));
 
                     await ctx.SaveChangesAsync();
                     tran.Commit();
@@ -348,6 +456,8 @@ namespace DU.Themes.Api
             requestDB.Reviewer = request.Reviewer.GetUserByModelId<Person, PersonModel>(ctx);
             requestDB.Start = request.Start.GetByModelId<StudyYear, StudyYearModel>(ctx);
             requestDB.End = request.End.GetByModelId<StudyYear, StudyYearModel>(ctx);
+            requestDB.ThemeENG = request.ThemeENG;
+            requestDB.ThemeLV = request.ThemeLV;
         }
 
         [HttpPost]
@@ -358,8 +468,6 @@ namespace DU.Themes.Api
             using (var ctx = new DbContext())
             {
                 result = ctx.Requests
-                     .Include(nameof(Entities.Request.Student))
-                     .Include(nameof(Entities.Request.Teacher))
                      .OrderBy(x => x.Id)
                      .Take(10)
                      .ToList()

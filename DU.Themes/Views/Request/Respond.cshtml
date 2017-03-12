@@ -46,15 +46,15 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="input-heading">Tema Lv</label>
+                            <label class="input-heading">@Resources.ThemeLv</label>
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="LV Title" v-text="entity.ThemeLV"></textarea>
+                                <textarea class="form-control" placeholder="@Resources.ThemeLv" v-model="entity.ThemeLV"></textarea>
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <label class="input-heading">Tema Eng</label>
-                            <textarea v-text="entity.ThemeENG" class="form-control" placeholder="Eng Title"></textarea>
+                            <label class="input-heading">@Resources.ThemeEng</label>
+                            <textarea v-model="entity.ThemeENG" class="form-control" placeholder="@Resources.ThemeEng"></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -83,12 +83,12 @@
                 <div class="box-footer">
                     <div class="pull-left">
                         <a href="@Url.Action("Index","Request")" class="btn btn-default">Cancel</a>
-                        <button type="button" class="btn btn-danger" v-on:click="submit">@Resources.CancelRequest</button>
+                        <button type="button" class="btn btn-danger" v-on:click="reject">@Resources.CancelRequest</button>
                     </div>
                     <div class="pull-right">
-                        <button type="button" class="btn btn-info" v-on:click="submit">@Resources.NeedImprovements</button>
+                        <button type="button" class="btn btn-info" v-on:click="needImprovements">@Resources.NeedImprovements</button>
                         <button type="button" class="btn btn-primary" v-on:click="submit">Submit</button>
-                        <button type="button" class="btn btn-success" v-on:click="submit">@Resources.CreateTheme</button>
+                        <button type="button" class="btn btn-success" v-on:click="createTheme">@Resources.CreateTheme</button>
                     </div>
                 </div>
             </div>
@@ -167,6 +167,39 @@
                             contentType: "application/json; charset=utf-8"
                         }).done(function (data) {
                             navigation.redirect("@Url.Action("Index", "Request")");
+                        }).error(handleError);
+                    },
+                    createTheme: function () {
+                        var self = this;
+                        $.ajax({
+                            url: "@Url.HttpRouteUrl(RouteName.CreateTheme , new { })",
+                            method: "POST",
+                            data: JSON.stringify(self.entity),
+                            contentType: "application/json; charset=utf-8"
+                        }).done(function (data) {
+                            navigation.redirect("@Url.Action("TeacherRequests", "Request")");
+                        }).error(handleError);
+                    },
+                    needImprovements: function () {
+                        var self = this;
+                        $.ajax({
+                            url: "@Url.HttpRouteUrl(RouteName.RequestNeedImprovements , new { })",
+                            method: "POST",
+                            data: JSON.stringify(self.entity),
+                            contentType: "application/json; charset=utf-8"
+                        }).done(function (data) {
+                            navigation.redirect("@Url.Action("TeacherRequests", "Request")");
+                        }).error(handleError);
+                    },
+                    reject: function () {
+                        var self = this;
+                        $.ajax({
+                            url: "@Url.HttpRouteUrl(RouteName.RejectByTeacher , new { })",
+                            method: "POST",
+                            data: JSON.stringify(self.entity),
+                            contentType: "application/json; charset=utf-8"
+                        }).done(function (data) {
+                            navigation.redirect("@Url.Action("TeacherRequests", "Request")");
                         }).error(handleError);
                     }
                 }

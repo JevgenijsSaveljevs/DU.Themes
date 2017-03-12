@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="EF\UserStore.cs" />
     <Compile Include="EntityBase.cs" />
+    <Compile Include="IDentifiable.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EF\Role.cs" />

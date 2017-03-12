@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DU.Themes.Entities
 {
-    public class Person : IdentityUser<long, UserLogin, UserRole, UserClaim>
+    public class Person : IdentityUser<long, UserLogin, UserRole, UserClaim>, IDentifiable
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Person, long> manager)
         {

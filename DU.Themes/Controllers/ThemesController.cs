@@ -1,18 +1,21 @@
-﻿using System.Web.Mvc;
+﻿using DU.Themes.Infrastructure;
+using System.Web.Mvc;
 
 namespace DU.Themes.Controllers
 {
     [Authorize]
     public class ThemesController : BaseController
     {
-        // GET: Themes
-        public ActionResult Index()
+        public ActionResult Teacher()
         {
             return View();
         }
 
-        public ActionResult Edit()
+        [Authorize(Roles = Roles.Teacher)]
+        public ActionResult Edit(string Id)
         {
+            ViewBag.Id = Id;
+
             return View();
         }
     }

@@ -1,0 +1,77 @@
+﻿@{ ViewBag.Title = Resources.Requests; }
+
+<section class="content-header">
+    <h1>
+        Users
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+    </ol>
+</section>
+<section class="content" id="app">
+    <div class="box" id="vue-app">
+        <div class="box-body">
+            <div>
+                <table id="table" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>@Resources.Teacher</th>
+                            <th>@Resources.Student</th>
+                            <th>@Resources.CreatedOn</th>
+                            <th>@Resources.StartYear</th>
+                            <th>@Resources.EndYear</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table').DataTable({
+                "language": dt.language,
+                "ajax": {
+                    "method": "POST",
+                    "url": "@Url.HttpRouteUrl(RouteName.DataTablesTeachersThemes, new { })"
+                },
+                "processing": true,
+                "serverSide": true,
+                "columns": [
+                    {
+                        "data": "Teacher.LastName",
+                        render: function (data, type, row, meta) { return row.Teacher.FullName; }
+                    },
+                    {
+                        "data": "Student.LastName",
+                        render: function (data, type, row, meta) { return row.Student.FullName; }
+                    },
+                    {
+                        "data": "CreatedOn",
+                        render: function (data, type, row, meta) { return moment(row.CreatedOn).format('DD/MM/YYYY'); }
+                    },
+                    {
+                        "data": "Start.Start",
+                        render: function (data, type, row, meta) { return row.Start.Name; }
+                    },
+                    {
+                        "data": "End.Start",
+                        render: function (data, type, row, meta) { return row.End.Name; }
+                    },
+                    {
+                        sortable: false,
+                     render: function (data, type, row, meta) { return '<a class="btn btn-info" href="' +'@Url.Action("Edit", "Themes")' + "/" + row.Id + '">'+'@Resources.Edit'+'</a>';  }
+                    }
+                ]
+            });
+        });
+    </script>
+}
+

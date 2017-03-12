@@ -14,11 +14,11 @@ namespace DU.Themes.Entities
         /// </summary>
         New = 1,
 
-        /// <summary>
-        /// Means Supervisor (Lecturer, Teacher) has accepted student request.
-        /// <para>code: 00010</para>
-        /// </summary>
-        AcceptedBySupervisor = 2,
+        ///// <summary>
+        ///// Means Supervisor (Lecturer, Teacher) has accepted student request.
+        ///// <para>code: 00010</para>
+        ///// </summary>
+        //AcceptedBySupervisor = 2,
 
         /// <summary>
         /// Supervisor (Lecturer, Teacher) has accepted student request, 
@@ -33,7 +33,7 @@ namespace DU.Themes.Entities
         /// That means that <see cref="Theme"/> could be created from these request.
         /// <para>code: 01010</para>
         /// </summary>
-        ThemesAccepted = 10,
+        Accepted = 10,
 
         /// <summary>
         /// Request is cancelled.

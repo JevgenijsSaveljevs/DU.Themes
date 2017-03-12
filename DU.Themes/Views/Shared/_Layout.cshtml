@@ -163,6 +163,7 @@
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Teacher))
                     {
                         <li><a href="@Url.Action("TeacherRequests", "Request")"><i class="fa fa-circle-o text-aqua"></i> <span>Requests (Lecturers)</span></a></li>
+                        <li><a href="@Url.Action("Teacher", "Themes")"><i class="fa fa-circle-o text-aqua"></i> <span>Themes (Lecturers)</span></a></li>
                     }
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Student))
                     {

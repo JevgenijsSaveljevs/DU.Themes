@@ -250,6 +250,24 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tēma Angliski.
+        /// </summary>
+        public static string ThemeEng {
+            get {
+                return ResourceManager.GetString("ThemeEng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tēma Latviski.
+        /// </summary>
+        public static string ThemeLv {
+            get {
+                return ResourceManager.GetString("ThemeLv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mācību gādu saraksts.
         /// </summary>
         public static string YearListHeading {

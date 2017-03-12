@@ -61,6 +61,15 @@ namespace DU.Themes.Models {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pieteikums ir apstiprinats.
+        /// </summary>
+        internal static string RequestStatus_Accepted {
+            get {
+                return ResourceManager.GetString("RequestStatus_Accepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accepted By Supervisor.
         /// </summary>
         internal static string RequestStatus_AcceptedBySupervisor {
@@ -70,7 +79,7 @@ namespace DU.Themes.Models {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancelled.
+        ///   Looks up a localized string similar to Pieteikums ir atcelts.
         /// </summary>
         internal static string RequestStatus_Cancelled {
             get {
@@ -79,7 +88,7 @@ namespace DU.Themes.Models {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Need Improvements.
+        ///   Looks up a localized string similar to Vajag labojumi.
         /// </summary>
         internal static string RequestStatus_NeedImprovements {
             get {
@@ -88,20 +97,11 @@ namespace DU.Themes.Models {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New.
+        ///   Looks up a localized string similar to Jauns Pieteikums.
         /// </summary>
         internal static string RequestStatus_New {
             get {
                 return ResourceManager.GetString("RequestStatus_New", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Themes Accepted.
-        /// </summary>
-        internal static string RequestStatus_ThemesAccepted {
-            get {
-                return ResourceManager.GetString("RequestStatus_ThemesAccepted", resourceCulture);
             }
         }
     }

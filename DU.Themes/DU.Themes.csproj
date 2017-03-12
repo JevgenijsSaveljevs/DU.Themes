@@ -228,6 +228,7 @@
     <Compile Include="Api\PersonController.cs" />
     <Compile Include="Api\RequestApiController.cs" />
     <Compile Include="Api\StudyYearController.cs" />
+    <Compile Include="Api\ThemesApiController.cs" />
     <Compile Include="Api\ValidationApiFilterAttribute.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -269,6 +270,8 @@
     <Compile Include="Infrastructure\RouteName.cs" />
     <Compile Include="Mappings\AppProfile.cs" />
     <Compile Include="Mappings\MappingExtensions.cs" />
+    <Compile Include="Mappings\Resolvers\PersonResolver.cs" />
+    <Compile Include="Mappings\Resolvers\StudyYearResolver.cs" />
     <Compile Include="Migrations\201702261520338_Initial.cs" />
     <Compile Include="Migrations\201702261520338_Initial.Designer.cs">
       <DependentUpon>201702261520338_Initial.cs</DependentUpon>
@@ -276,6 +279,18 @@
     <Compile Include="Migrations\201702261539519_RequestDates.cs" />
     <Compile Include="Migrations\201702261539519_RequestDates.Designer.cs">
       <DependentUpon>201702261539519_RequestDates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703121232476_ThemesUpdate.cs" />
+    <Compile Include="Migrations\201703121232476_ThemesUpdate.Designer.cs">
+      <DependentUpon>201703121232476_ThemesUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703121454125_AddThemeActiveField.cs" />
+    <Compile Include="Migrations\201703121454125_AddThemeActiveField.Designer.cs">
+      <DependentUpon>201703121454125_AddThemeActiveField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703121530194_AddOptionRevierField.cs" />
+    <Compile Include="Migrations\201703121530194_AddOptionRevierField.Designer.cs">
+      <DependentUpon>201703121530194_AddOptionRevierField.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -293,8 +308,11 @@
     <Compile Include="Models\RequestModel.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\StudyYearModel.cs" />
+    <Compile Include="Models\ThemeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Validaiton\ThemeValidator.cs" />
+    <Compile Include="Validaiton\Theme\ThemeValidatorBase.cs" />
     <Compile Include="Validaiton\CustomRules\ExistingYear.cs" />
     <Compile Include="Validaiton\CustomRules\NewOrNeedImporvements.cs" />
     <Compile Include="Validaiton\CustomRules\SamePerson.cs" />
@@ -302,7 +320,8 @@
     <Compile Include="Validaiton\Person\CreateStudentValidator.cs" />
     <Compile Include="Validaiton\Request\BaseValidator.cs" />
     <Compile Include="Validaiton\Request\NewRequestValidator.cs" />
-    <Compile Include="Validaiton\Request\RequestNeedImprovementsStatusValidator.cs" />
+    <Compile Include="Validaiton\Request\RequestBeforeCreateThemeValidator.cs" />
+    <Compile Include="Validaiton\Request\RequestNeedImprovementsValidator.cs" />
     <Compile Include="Validaiton\Request\RequestPersonsNotChangedValidator.cs" />
     <Compile Include="Validaiton\Request\RequestUpdateByStudentValidator.cs" />
     <Compile Include="Validaiton\Request\RequestValidatorBase.cs" />
@@ -324,6 +343,15 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="gulpfile.js" />
+    <EmbeddedResource Include="Migrations\201703121232476_ThemesUpdate.resx">
+      <DependentUpon>201703121232476_ThemesUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703121454125_AddThemeActiveField.resx">
+      <DependentUpon>201703121454125_AddThemeActiveField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703121530194_AddOptionRevierField.resx">
+      <DependentUpon>201703121530194_AddOptionRevierField.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="package.json" />
     <EmbeddedResource Include="assets\src\**" />
     <Content Include="Web.config">
@@ -391,6 +419,7 @@
     <Content Include="Views\Maintenance\CreateYear.cshtml" />
     <Content Include="Views\Maintenance\EditYear.cshtml" />
     <Content Include="Views\Request\Respond.cshtml" />
+    <Content Include="Views\Themes\Teacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702261520338_Initial.resx">
@@ -406,6 +435,7 @@
     <EmbeddedResource Include="Validaiton\ValidationErrors.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ValidationErrors.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

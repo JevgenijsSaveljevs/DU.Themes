@@ -70,6 +70,15 @@ namespace DU.Themes.Validaiton {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only one Active Theme.
+        /// </summary>
+        internal static string OnlyOneActiveTheme {
+            get {
+                return ResourceManager.GetString("OnlyOneActiveTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to sistemā jau ir reģistrēts mācibu gāds ar šadu gadu.
         /// </summary>
         internal static string YearAlreadyExists {

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "New";
 }
 
 <section class="content-header">
@@ -11,92 +11,166 @@
         <li class="active">Blank page</li>
     </ol>
 </section>
-<section class="content">
+<section class="content" id="vue-app">
     <div class="row">
-        <div class="col-xs-12 col-md-8">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Edit Theme</h3>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="box box-info">
+                <div class="box-header">
+                    <h1 class="page-header">Edit Request</h1>
+                    @*<small><b>Status: </b>New</small>*@
+                    <b>Status: </b><span v-text="entity.StatusRepresentation"></span>
                 </div>
                 <div class="box-body">
-                    <form role="form">
-                        <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="input-heading">Teacher</label>
                             <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                    <input type="email" class="form-control" placeholder="Email">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                    <select class="form-control">
-                                        <option disabled selected>Select Lecturer</option>
-                                        <option>John Doe</option>
-                                        <option>Alex Brown</option>
-                                        <option>Jon Snow</option>
-                                        <option>Kanye West</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                    <select class="form-control">
-                                        <option disabled selected>Select Reviewr</option>
-                                        <option>John Doe</option>
-                                        <option>Alex Brown</option>
-                                        <option>Jon Snow</option>
-                                        <option>Kanye West</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                    <select class="form-control">
-                                        <option disabled selected>Select Student</option>
-                                        <option>John Doe</option>
-                                        <option>Alex Brown</option>
-                                        <option>Jon Snow</option>
-                                        <option>Kanye West</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                    <textarea class="form-control" placeholder="LV Title"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                    <textarea class="form-control" placeholder="Eng Title"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                    <select class="form-control">
-                                        <option disabled selected>Select Status</option>
-                                        <option>Accepted</option>
-                                        <option>Refused</option>
-                                        <option>Canceled</option>
-                                        <option>Pending</option>
-                                    </select>
-                                </div>
+                                <select2 url="@Url.HttpRouteUrl(RouteName.TeachersLookup, new { })"
+                                         :settings="personSettings"
+                                         display-prop="FullName"
+                                         v-model="entity.Teacher">
+                                </select2>
                             </div>
                         </div>
-                        <!-- /.box-body -->
+                        <div class="col-md-6">
+                            <label class="input-heading">Reviewr</label>
+                            <div class="form-group">
+                                <select2 url="@Url.HttpRouteUrl(RouteName.TeachersLookup, new { })"
+                                         :settings="personSettings"
+                                         display-prop="FullName"
+                                         v-model="entity.Reviewr">
+                                </select2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="input-heading">@Resources.ThemeLv</label>
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="@Resources.ThemeLv" v-model="entity.ThemeLV"></textarea>
+                            </div>
+                        </div>
 
-                        <div class="box-footer">
-                            <button type="button" class="btn btn-default">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                        <div class="col-md-6">
+                            <label class="input-heading">@Resources.ThemeEng</label>
+                            <textarea v-model="entity.ThemeENG" class="form-control" placeholder="@Resources.ThemeEng"></textarea>
                         </div>
-                    </form>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="input-heading">Start</label>
+                            <div class="form-group">
+                                <select2 url="@Url.HttpRouteUrl(RouteName.StudyYears, new { })"
+                                         :settings="select2Settings"
+                                         display-prop="Name"
+                                         v-model="entity.Start">
+                                </select2>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="input-heading">End</label>
+                            <div class="form-group">
+                                <select2 url="@Url.HttpRouteUrl(RouteName.StudyYears, new { })"
+                                         :settings="select2Settings"
+                                         display-prop="Name"
+                                         v-model="entity.End">
+                                </select2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="pull-left">
+                        <a href="@Url.Action("Index","Request")" class="btn btn-default">Cancel</a>
+                        @*<button type="button" class="btn btn-danger" v-on:click="reject">@Resources.CancelRequest</button>*@
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary" v-on:click="submit">Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-2"></div>
     </div>
 </section>
+
+@section scripts{
+    <script>
+
+        select2Settings = {
+            processResults: function (data, params) {
+                var txts = data.items.map(function (input, idx) {
+                    return {
+                        text: input.Name,
+                        id: input.Id,
+                        entity: input
+                    };
+                });
+                params.page = params.page || 1;
+
+                return {
+                    results: txts,
+                    pagination: {
+                        more: (params.page * this.pageSize) < data.count
+                    }
+                };
+            }
+        }
+
+        personSettings = {
+            processResults: function (data, params) {
+                var txts = data.items.map(function (input, idx) {
+                    return {
+                        text: input.FullName,
+                        id: input.Id,
+                        entity: input
+                    };
+                });
+                params.page = params.page || 1;
+
+                return {
+                    results: txts,
+                    pagination: {
+                        more: (params.page * this.pageSize) < data.count
+                    }
+                };
+            }
+        }
+
+        var app = {};
+
+        async.parallel([
+            function (callback) {
+                getData("@Url.HttpRouteUrl(RouteName.GetTeacherTheme, new { Id = ViewBag.Id })", callback);
+            },
+        ], function (err, result) {
+
+            app = new Vue({
+                el: '#vue-app',
+                data: function () {
+                    return {
+                        entity: findEntity(result).data,
+                        select2Settings: select2Settings,
+                        personSettings: personSettings
+                    }
+                },
+                methods: {
+                    submit: function () {
+                        var self = this;
+                        $.ajax({
+                            url: "@Url.HttpRouteUrl(RouteName.UpdateThemeByTeacher , new { })",
+                            method: "POST",
+                            data: JSON.stringify(self.entity),
+                            contentType: "application/json; charset=utf-8"
+                        }).done(function (data) {
+                            navigation.redirect("@Url.Action("Index", "Request")");
+                        }).error(handleError);
+                    },
+                }
+            });
+        });
+
+    </script>
+
+}

@@ -63,6 +63,18 @@ namespace DU.Themes.Infrastructure
             return null;
         }
 
+        public static TDomain GetById<TDomain, TModel>(this TModel model, DbContext context)
+            where TDomain : class, IDentifiable 
+            where TModel : IDentifiable
+        {
+            if (model != null)
+            {
+                return context.Set<TDomain>().FirstOrDefault(x => x.Id == model.Id);
+            }
+
+            return null;
+        }
+
         public static TDomain GetUserByModelId<TDomain, TModel>(this TModel model, DbContext context)
            where TDomain : IdentityUser<long, UserLogin, UserRole, UserClaim>
            where TModel : ModelBase
@@ -147,6 +159,12 @@ namespace DU.Themes.Infrastructure
             where TDestination : class
         {
             return Mapper.Map<TSource, TDestination>(source);
+        }
+
+        public static TDestination CastTo<TSource, TDestination>(this TSource source, DbContext context)
+            where TDestination : class
+        {
+            return Mapper.Map<TSource, TDestination>(source, (opts) => { opts.Items.Add("Context", context); });
         }
 
         public static void UpdateFrom<TSource, TDestination>(this TSource toUpdate, TDestination newValues)
@@ -383,6 +401,28 @@ namespace DU.Themes.Infrastructure
                 yield return source.Take(chunksize);
                 source = source.Skip(chunksize);
             }
+        }
+
+        public static IQueryable<T> AsEagerRequests<T>(this DbSet<T> source)
+            where T : Request
+        {
+            return source
+                .Include(x => x.Start)
+                .Include(x => x.End)
+                .Include(x => x.Student)
+                .Include(x => x.Teacher)
+                .Include(x => x.Reviewer);
+        }
+
+        public static IQueryable<T> AsEagerThemes<T>(this DbSet<T> source)
+            where T : Theme
+        {
+            return source
+                .Include(x => x.Start)
+                .Include(x => x.End)
+                .Include(x => x.Student)
+                .Include(x => x.Teacher)
+                .Include(x => x.Reviewer);
         }
 
         ////public static string Compute(this Request request)

@@ -186,4 +186,10 @@
   <data name="NeedImprovements" xml:space="preserve">
     <value>Vajag labojumi</value>
   </data>
+  <data name="ThemeEng" xml:space="preserve">
+    <value>Tēma Angliski</value>
+  </data>
+  <data name="ThemeLv" xml:space="preserve">
+    <value>Tēma Latviski</value>
+  </data>
 </root>

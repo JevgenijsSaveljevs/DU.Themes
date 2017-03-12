@@ -15,7 +15,7 @@ namespace DU.Themes.Validaiton
 
         private ValidationFailure NotAttachedToThemes(StudyYear year)
         {
-            if (this.Context.Themes.Any(x => x.WorkStart.Id == year.Id))
+            if (this.Context.Themes.Any(x => x.Start.Id == year.Id))
             {
                 return new ValidationFailure(nameof(StudyYear.Start), ValidationErrors.YearIsInUse);
             }

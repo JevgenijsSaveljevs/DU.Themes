@@ -120,6 +120,9 @@
   <data name="EndLesserThanStart" xml:space="preserve">
     <value>Begiuma datumam ir jābut mazakam neka Starta datumam</value>
   </data>
+  <data name="OnlyOneActiveTheme" xml:space="preserve">
+    <value>Only one Active Theme</value>
+  </data>
   <data name="YearAlreadyExists" xml:space="preserve">
     <value>sistemā jau ir reģistrēts mācibu gāds ar šadu gadu</value>
   </data>

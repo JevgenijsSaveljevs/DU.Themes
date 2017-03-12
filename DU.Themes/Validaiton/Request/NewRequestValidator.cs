@@ -21,8 +21,9 @@ namespace DU.Themes.ValidaitonApiFilter
             RuleFor(x => x.CreatedOn).NotEqual(DateTime.MinValue);
             //RuleFor(x => x.Student).Must( x => x.Id == Thread)
             Custom(x => OnlyOneActiveRequest(ctx, x));
-          
-           
+            Custom(x => NoThemesForStudent(ctx, x));
+
+
             RuleFor(x => x.Start).NotNull();
             RuleFor(x => x.Start).MustBeExistingYear(ctx).When(x => x.Start != null);
 
@@ -33,11 +34,27 @@ namespace DU.Themes.ValidaitonApiFilter
 
         }
 
+        private ValidationFailure NoThemesForStudent(DbContext ctx, Entities.Request request)
+        {
+            if(request.Student == null)
+            {
+                return null;
+            }
+
+            if (ctx.Themes.Any(x => x.StudentId == request.Student.Id))
+            {
+                return new ValidationFailure("Status", "Theres is already active theme for student");
+            }
+
+            return null;
+        }
+
         private ValidationFailure OnlyOneActiveRequest(DbContext ctx, DU.Themes.Entities.Request request)
         {
-            if (ctx.Requests.Where(x => x.Student.Id == request.Student.Id && x.Status != RequestStatus.Cancelled).Any())
+            if (ctx.Requests
+                .Where(x => x.Student.Id == request.Student.Id && x.Status != RequestStatus.Cancelled && x.Status != RequestStatus.Accepted).Any())
             {
-                return new ValidationFailure("", "Already have one");
+                return new ValidationFailure("Status", "Theres is already one active request for student");
             }
 
             else

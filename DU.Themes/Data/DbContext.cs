@@ -8,7 +8,9 @@ namespace DU.Themes
         public DbContext()
             : base("TemasDB")
         {
+            base.Configuration.LazyLoadingEnabled = false;
             this.Configuration.LazyLoadingEnabled = false;
+            
         }
 
         public static DbContext Create()
