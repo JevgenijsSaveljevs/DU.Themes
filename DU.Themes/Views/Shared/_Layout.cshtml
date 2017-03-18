@@ -32,55 +32,42 @@
 
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <!-- Messages: style can be found in dropdown.less-->
-                        <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="label label-success">4</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 4 messages</li>
-                                <li>
-                                    <!-- inner menu: contains the actual data -->
-                                    <ul class="menu">
-                                        <li>
-                                            <!-- start message -->
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    @*<img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">*@
-                                                </div>
-                                                <h4>
-                                                    Support Team
-                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <!-- end message -->
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">See All Messages</a></li>
-                            </ul>
-                        </li>
                         <!-- Notifications: style can be found in dropdown.less -->
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">10</span>
+                                <span class="label label-warning" id="notification-count"></span>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
-                                <li>
-                                    <!-- inner menu: contains the actual data -->
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">View all</a></li>
+                            <ul class="dropdown-menu" id="request-notifications">
+                                @{
+                                    if (!User.IsInRole(DU.Themes.Infrastructure.Roles.Teacher))
+                                    {
+                                        <text>
+                                            <li class="header">@Resources.NoNewNotifications</li>
+                                        </text>
+                                    }
+
+                                }
+
+                                @{
+                                    if (User.IsInRole(DU.Themes.Infrastructure.Roles.Teacher))
+                                    {
+                                        <text>
+                                            <li>
+                                                <!-- inner menu: contains the actual data -->
+                                                <ul class="menu">
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="fa fa-spinner fa-pulse fa-fw"></i> @Resources.Loading
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </text>
+                                    }
+
+                                }
+
                             </ul>
                         </li>
                         <!-- User Account: style can be found in dropdown.less -->
@@ -168,25 +155,13 @@
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Student))
                     {
                         <li><a href="@Url.Action("Index", "Request")"><i class="fa fa-circle-o text-aqua"></i> <span>Request (Students)</span></a></li>
+                        <li><a href="@Url.Action("Student", "Themes")"><i class="fa fa-circle-o text-aqua"></i> <span>Themes (Students)</span></a></li>
                     }
-                    <li><a href="@Url.Action("Index", "Themes")"><i class="fa fa-circle-o text-aqua"></i> <span>Themes (Lecutrers & Students)</span></a></li>
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.SystemAdministrator))
                     {
-
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-laptop"></i>
-                                <span>Maintenance</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="@Url.Action("Import", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Import</span></a></li>
-                                <li><a href="@Url.Action("Persons", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Users</span></a></li>
-                                <li><a href="@Url.Action("StudyYearsList", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Macibu gadi</span></a></li>
-                            </ul>
-                        </li>
+                        <li><a href="@Url.Action("Import", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Import</span></a></li>
+                        <li><a href="@Url.Action("Persons", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Users</span></a></li>
+                        <li><a href="@Url.Action("StudyYearsList", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Macibu gadi</span></a></li>
                     }
                 </ul>
             </section>
@@ -204,5 +179,48 @@
 
     <script src="~/assets/dist/js/bundle.js"></script>
     @RenderSection("scripts", required: false)
+    @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Teacher))
+    {
+        <script type="text/javascript">
+
+            Handlebars.registerHelper('notification-widget', function (data, options) {
+                out = "";
+                console.log('data in widget', data);
+
+                if (data.count > 0) {
+                    if (data.count == 1) {
+                        out += '<li class="header">@Resources.Handlebar_One_NewNotification</li>';
+                    } else {
+                        out += '<li class="header">' + Handlebars.compile("@Resources.Handlebar_N_NewNotifications")(data) + '</li>';
+                    }
+
+                    out += '<li><ul class="menu">';
+                    var template = Handlebars.compile('<li><a href="@Url.Action("Respond", "Request", new { id = UrlParameter.Optional })/{{Id}}"><i class="fa fa-users text-aqua"></i>{{Student.FullName}}</a></li>');
+                    for (var i = 0, l = data.items.length; i < l; i++) {
+                        out += template(data.items[i]);
+                    }
+                    out += "</ul>";
+                    out += "</li>"
+                } else {
+                    out += '<li class="header">@Resources.NoNewNotifications</li>';
+                }
+
+                return out;
+            });
+
+            $.ajax({
+                url: "@Url.HttpRouteUrl(RouteName.NewRequestCount, new { })",
+                method: "GET",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (data) {
+                console.log(data);
+                var template = Handlebars.compile(" {{#notification-widget data}}{{Student.FullName}}{{/notification-widget}}");
+                var ouput = template({ data: data });
+
+                $('#request-notifications').html(ouput);
+                $('#notification-count').text(data.count);
+            });
+        </script>
+    }
 </body>
 </html>

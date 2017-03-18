@@ -107,7 +107,64 @@ namespace DU.Themes.Api
                     theme.Validate(new SamePersonValidator(ctx, request));
                     this.MapRequest(theme, request, ctx);
                     theme.Touch();
-                    theme.Validate(new ThemeValidatorBase(ctx));
+                    theme.Validate(new UpdateThemeValidator(ctx));
+
+                    await ctx.SaveChangesAsync();
+                    tran.Commit();
+
+                    return this.Ok();
+                }
+            }
+        }
+
+        [HttpPost]
+        [Route("api/teacher/themes/delete", Name = RouteName.DeleteTheme)]
+        [Authorize(Roles = Roles.Teacher)]
+        public async Task<IHttpActionResult> Delete(ThemeModel request)
+        {
+            var userId = this.User.Identity.GetUserId<long>();
+
+            using (var ctx = new DbContext())
+            {
+                using (var tran = ctx.BeginTran())
+                {
+                    var theme = ctx.Themes.AsEagerThemes().ById(request.Id);
+
+                    if (theme.TeacherId != userId && User.IsInRole(Roles.SystemAdministrator))
+                    {
+                        return this.BadRequest();
+                    }
+
+                    ctx.Themes.Remove(theme);
+
+                    await ctx.SaveChangesAsync();
+                    tran.Commit();
+
+                    return this.Ok();
+                }
+            }
+        }
+
+        [HttpPost]
+        [Route("api/teacher/themes/inactive", Name = RouteName.MarkThemeInactive)]
+        [Authorize(Roles = Roles.Teacher)]
+        public async Task<IHttpActionResult> Inactive(ThemeModel request)
+        {
+            var userId = this.User.Identity.GetUserId<long>();
+
+            using (var ctx = new DbContext())
+            {
+                using (var tran = ctx.BeginTran())
+                {
+                    var theme = ctx.Themes.AsEagerThemes().ById(request.Id);
+
+                    if (theme.TeacherId != userId && User.IsInRole(Roles.SystemAdministrator))
+                    {
+                        return this.BadRequest();
+                    }
+
+                    theme.Active = false;
+                    theme.Touch();
 
                     await ctx.SaveChangesAsync();
                     tran.Commit();

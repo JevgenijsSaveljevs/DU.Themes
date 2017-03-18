@@ -20,6 +20,11 @@
         /// </summary>
         public const string Teacher = "Teacher";
 
+        /// <summary>
+        /// Teacher
+        /// </summary>
+        public const string TeacherOrSystemAdministrator = Teacher +", " + SystemAdministrator;
+
         ///// <summary>
         ///// Combines multiple roles into comma separated string
         ///// </summary>

@@ -21,5 +21,9 @@
         public const string RejectByStudent = "RejectByStudent";
         public const string CreateTheme = "CreateTheme";
         public const string UpdateThemeByTeacher = "UpdateThemeByTeacher";
+        public const string DeleteTheme = "DeleteTheme";
+        public const string MarkThemeInactive = "MarkThemeInactive";
+        public const string NewRequestCount = "NewRequestCount";
+        public const string UpdateStudyYear = "UpdateStudyYear";
     }
 }

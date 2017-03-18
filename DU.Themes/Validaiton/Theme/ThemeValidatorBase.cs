@@ -25,7 +25,7 @@ namespace DU.Themes.Validaiton
             this.Custom(x => this.OnlyOneActive(x));
         }
 
-        private ValidationFailure OnlyOneActive(Theme theme)
+        public virtual ValidationFailure OnlyOneActive(Theme theme)
         {
             if(this.Context.Themes.Any(x => x.StudentId == theme.Student.Id && x.Active == true))
             {

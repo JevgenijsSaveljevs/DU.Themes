@@ -39,7 +39,7 @@
                                 <select2 url="@Url.HttpRouteUrl(RouteName.TeachersLookup, new { })"
                                          :settings="personSettings"
                                          display-prop="FullName"
-                                         v-model="entity.Reviewr">
+                                         v-model="entity.Reviewer">
                                 </select2>
                             </div>
                         </div>
@@ -82,8 +82,9 @@
                 </div>
                 <div class="box-footer">
                     <div class="pull-left">
-                        <a href="@Url.Action("Index","Request")" class="btn btn-default">Cancel</a>
-                        @*<button type="button" class="btn btn-danger" v-on:click="reject">@Resources.CancelRequest</button>*@
+                        <a href="@Url.Action("Index","Request")" class="btn btn-default">@Resources.ToList</a>
+                        <button type="button" class="btn btn-danger" v-on:click="remove">@Resources.Delete</button>
+                        <button type="button" class="btn btn-default" v-on:click="inactivate">@Resources.InactivateTheme</button>
                     </div>
                     <div class="pull-right">
                         <button type="button" class="btn btn-primary" v-on:click="submit">Submit</button>
@@ -159,14 +160,36 @@
                     submit: function () {
                         var self = this;
                         $.ajax({
-                            url: "@Url.HttpRouteUrl(RouteName.UpdateThemeByTeacher , new { })",
+                            url: "@Url.HttpRouteUrl(RouteName.UpdateThemeByTeacher, new { })",
                             method: "POST",
                             data: JSON.stringify(self.entity),
                             contentType: "application/json; charset=utf-8"
                         }).done(function (data) {
-                            navigation.redirect("@Url.Action("Index", "Request")");
+                            navigation.redirect("@Url.Action("Teacher", "Themes")");
                         }).error(handleError);
                     },
+                    inactivate: function () {
+                        var self = this;
+                        $.ajax({
+                            url: "@Url.HttpRouteUrl(RouteName.MarkThemeInactive, new { })",
+                            method: "POST",
+                            data: JSON.stringify(self.entity),
+                            contentType: "application/json; charset=utf-8"
+                        }).done(function (data) {
+                            navigation.redirect("@Url.Action("Teacher", "Themes")");
+                        }).error(handleError);
+                    },
+                    remove: function () {
+                        var self = this;
+                        $.ajax({
+                            url: "@Url.HttpRouteUrl(RouteName.DeleteTheme, new { })",
+                            method: "POST",
+                            data: JSON.stringify(self.entity),
+                            contentType: "application/json; charset=utf-8"
+                        }).done(function (data) {
+                            navigation.redirect("@Url.Action("Teacher", "Themes")");
+                        }).error(handleError);
+                    }
                 }
             });
         });

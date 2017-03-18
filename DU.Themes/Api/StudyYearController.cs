@@ -46,6 +46,47 @@ namespace DU.Themes.Api
         }
 
         [Authorize(Roles = Roles.SystemAdministrator)]
+        [Route("year/model/update", Name = RouteName.UpdateStudyYear)]
+        [HttpPost]
+        public async Task<IHttpActionResult> Update(StudyYearModel yearModel)
+        {
+            if (yearModel == null)
+            {
+                return this.BadRequest();
+            }
+
+            using (var ctx = new DbContext())
+            {
+                using (var tran = ctx.BeginTran())
+                {
+                    var yearDb = ctx.StudyYears.ById(yearModel.Id);
+
+                    if(yearModel.IsCurrent && !yearDb.IsCurrent)
+                    {
+                        var activeYears = ctx.StudyYears.Where(x => x.IsCurrent == true).ToList();
+
+                        foreach (var activeYear in activeYears)
+                        {
+                            activeYear.IsCurrent = false;
+                        }
+                    }
+
+                    yearDb.UpdateFrom(yearModel);
+                    this.CalculateNames(yearDb);
+                    
+                    yearDb.Validate(new UpdateStudyYear(ctx));
+
+                    await ctx.SaveChangesAsync();
+
+                    tran.Commit();
+
+                    return this.Ok(yearDb);
+                }
+            }
+        }
+
+
+        [Authorize(Roles = Roles.SystemAdministrator)]
         [Route("year/model", Name = "CreateYearModel")]
         [HttpPost]
         public async Task<IHttpActionResult> Create(StudyYearModel yearModel)

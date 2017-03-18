@@ -124,6 +124,15 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dzest temu.
+        /// </summary>
+        public static string DeleteTheme {
+            get {
+                return ResourceManager.GetString("DeleteTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rediģēt.
         /// </summary>
         public static string Edit {
@@ -151,6 +160,42 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Jums ir jauni {{count}} ziņojumi.
+        /// </summary>
+        public static string Handlebar_N_NewNotifications {
+            get {
+                return ResourceManager.GetString("Handlebar_N_NewNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jums ir 1 jauns ziņojums.
+        /// </summary>
+        public static string Handlebar_One_NewNotification {
+            get {
+                return ResourceManager.GetString("Handlebar_One_NewNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Atzīmēt ka neaktivu.
+        /// </summary>
+        public static string InactivateTheme {
+            get {
+                return ResourceManager.GetString("InactivateTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tekošais mācibu gāds.
+        /// </summary>
+        public static string IsCurrentYear {
+            get {
+                return ResourceManager.GetString("IsCurrentYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uzvards.
         /// </summary>
         public static string LastName {
@@ -160,11 +205,29 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notiek ielade.
+        /// </summary>
+        public static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vajag labojumi.
         /// </summary>
         public static string NeedImprovements {
             get {
                 return ResourceManager.GetString("NeedImprovements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jums nav jaunu ziņojumu.
+        /// </summary>
+        public static string NoNewNotifications {
+            get {
+                return ResourceManager.GetString("NoNewNotifications", resourceCulture);
             }
         }
         
@@ -264,6 +327,24 @@ namespace DU.Themes.Views {
         public static string ThemeLv {
             get {
                 return ResourceManager.GetString("ThemeLv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uz sarakstu.
+        /// </summary>
+        public static string ToList {
+            get {
+                return ResourceManager.GetString("ToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Radit visus.
+        /// </summary>
+        public static string ViewAll {
+            get {
+                return ResourceManager.GetString("ViewAll", resourceCulture);
             }
         }
         

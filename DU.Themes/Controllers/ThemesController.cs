@@ -6,6 +6,7 @@ namespace DU.Themes.Controllers
     [Authorize]
     public class ThemesController : BaseController
     {
+        [Authorize(Roles = Roles.Teacher)]
         public ActionResult Teacher()
         {
             return View();
@@ -16,6 +17,12 @@ namespace DU.Themes.Controllers
         {
             ViewBag.Id = Id;
 
+            return View();
+        }
+
+        [Authorize(Roles = Roles.Student)]
+        public ActionResult Student(string Id)
+        {
             return View();
         }
     }

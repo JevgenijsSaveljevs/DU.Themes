@@ -13,5 +13,7 @@ namespace DU.Themes.Entities
         {
             return string.Join("/", this.Start.Year, this.End.Year);
         }
+
+        public bool IsCurrent { get; set; }
     }
 }

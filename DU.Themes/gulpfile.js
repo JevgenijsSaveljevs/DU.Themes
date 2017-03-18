@@ -33,12 +33,16 @@ var config = {
                 "./bower_components/adminlte/dist/js/app.min.js",
                 "./bower_components/adminlte/plugins/datepicker/bootstrap-datepicker.js",
                 "./bower_components/adminlte/plugins/datepicker/locales/bootstrap-datepicker.lv.js",
+                "./bower_components/AdminLTE/plugins/iCheck/icheck.min.js",
 
                 // toastr
                 "./bower_components/toastr/toastr.min.js",
 
                 // async
-                "./bower_components/async/dist/async.min.js"
+                "./bower_components/async/dist/async.min.js",
+
+                // handlebars
+                "./bower_components/handlebars/handlebars.min.js"
             ],
             ownScripts: [
                 "./assets/src/**/*.js"
@@ -54,6 +58,7 @@ var config = {
             "./bower_components/select2/dist/css/select2.css",
             "./bower_components/select2-bootstrap-theme/dist/select2-bootstrap.css",
             "./bower_components/datatables/media/css/dataTables.bootstrap.css",
+            "./bower_components/AdminLTE/plugins/iCheck/all.css"
         ],
         fonts: [
             "./bower_components/font-awesome/fonts/fontawesome-webfont.*",

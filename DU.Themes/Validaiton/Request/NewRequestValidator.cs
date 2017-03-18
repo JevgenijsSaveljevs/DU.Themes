@@ -41,7 +41,7 @@ namespace DU.Themes.ValidaitonApiFilter
                 return null;
             }
 
-            if (ctx.Themes.Any(x => x.StudentId == request.Student.Id))
+            if (ctx.Themes.Any(x => x.StudentId == request.Student.Id && x.Active == true))
             {
                 return new ValidationFailure("Status", "Theres is already active theme for student");
             }

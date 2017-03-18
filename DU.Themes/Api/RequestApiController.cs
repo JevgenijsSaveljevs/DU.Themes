@@ -12,6 +12,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace DU.Themes.Api
 {
@@ -246,6 +247,40 @@ namespace DU.Themes.Api
 
                     tran.Commit();
                 }
+            }
+        }
+
+        [HttpGet]
+        [Route("api/new-request-count", Name = RouteName.NewRequestCount)]
+        [Authorize(Roles = Roles.Teacher)]
+        public async Task<object> NewRequestcount()
+        {
+            var userId = Convert.ToInt64(this.User.Identity.GetUserId());
+
+            using (var ctx = new DbContext())
+            {
+                var newRequestsDb = await ctx.Requests
+                    .AsEagerRequests()
+                    .Where(x => x.TeacherId == userId)
+                    .Where(x => x.Status == RequestStatus.New)
+                    .OrderByDescending(x => x.CreatedOn)
+                    .Take(5)
+                    .ToListAsync();
+
+                var newRequests = newRequestsDb
+                    .Select(x => x.CastTo<Request, RequestModel>());                 
+                    
+
+                var newRequestCount = await ctx.Requests
+                    .Where(x => x.TeacherId == userId)
+                    .Where(x => x.Status == RequestStatus.New)
+                    .CountAsync();
+
+                return new
+                {
+                    items = newRequests,
+                    count = newRequestCount
+                };
             }
         }
 

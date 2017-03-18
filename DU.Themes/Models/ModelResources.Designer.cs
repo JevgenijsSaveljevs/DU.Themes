@@ -61,6 +61,15 @@ namespace DU.Themes.Models {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nepareizs lietotaja vārds/parole.
+        /// </summary>
+        internal static string BadCredentials {
+            get {
+                return ResourceManager.GetString("BadCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pieteikums ir apstiprinats.
         /// </summary>
         internal static string RequestStatus_Accepted {

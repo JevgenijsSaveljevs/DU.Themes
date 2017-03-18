@@ -192,4 +192,31 @@
   <data name="ThemeLv" xml:space="preserve">
     <value>Tēma Latviski</value>
   </data>
+  <data name="DeleteTheme" xml:space="preserve">
+    <value>Dzest temu</value>
+  </data>
+  <data name="InactivateTheme" xml:space="preserve">
+    <value>Atzīmēt ka neaktivu</value>
+  </data>
+  <data name="ToList" xml:space="preserve">
+    <value>Uz sarakstu</value>
+  </data>
+  <data name="Handlebar_N_NewNotifications" xml:space="preserve">
+    <value>Jums ir jauni {{count}} ziņojumi</value>
+  </data>
+  <data name="Handlebar_One_NewNotification" xml:space="preserve">
+    <value>Jums ir 1 jauns ziņojums</value>
+  </data>
+  <data name="NoNewNotifications" xml:space="preserve">
+    <value>Jums nav jaunu ziņojumu</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Notiek ielade</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>Radit visus</value>
+  </data>
+  <data name="IsCurrentYear" xml:space="preserve">
+    <value>Tekošais mācibu gāds</value>
+  </data>
 </root>
