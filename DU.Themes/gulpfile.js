@@ -58,11 +58,14 @@ var config = {
             "./bower_components/select2/dist/css/select2.css",
             "./bower_components/select2-bootstrap-theme/dist/select2-bootstrap.css",
             "./bower_components/datatables/media/css/dataTables.bootstrap.css",
-            "./bower_components/AdminLTE/plugins/iCheck/all.css"
+            "./bower_components/AdminLTE/plugins/iCheck/square/blue.css"
         ],
         fonts: [
             "./bower_components/font-awesome/fonts/fontawesome-webfont.*",
             "./bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.*"
+        ],
+        imgs: [
+            "./bower_components/AdminLTE/plugins/iCheck/square/*.png"
         ]
     },
     dist: {
@@ -90,7 +93,7 @@ gulp.task('js-bundle', function () {
             .pipe(gulp.dest(config.dist.js));
 });
 
-gulp.task('css-bundle', function () {
+gulp.task('css-bundle', ['imgs'], function () {
     return gulp.src(config.src.css)
             .on('error', console.error.bind(console))
             .pipe(concat("bundle.css"))
@@ -98,6 +101,11 @@ gulp.task('css-bundle', function () {
             .pipe(cssmin())
             .pipe(gulp.dest(config.dist.css));
 });
+
+gulp.task('imgs', function(){
+     return gulp.src(config.src.imgs)
+            .pipe(gulp.dest(config.dist.css));
+})
 
 gulp.task('default', ['js-bundle']);
 
