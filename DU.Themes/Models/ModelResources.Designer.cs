@@ -61,7 +61,7 @@ namespace DU.Themes.Models {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nepareizs lietotaja vārds/parole.
+        ///   Looks up a localized string similar to Nepareizs lietotāja vārds/parole.
         /// </summary>
         internal static string BadCredentials {
             get {

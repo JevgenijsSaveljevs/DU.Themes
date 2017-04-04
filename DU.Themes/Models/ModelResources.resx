@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BadCredentials" xml:space="preserve">
-    <value>Nepareizs lietotaja vārds/parole</value>
+    <value>Nepareizs lietotāja vārds/parole</value>
   </data>
   <data name="RequestStatus_Accepted" xml:space="preserve">
     <value>Pieteikums ir apstiprinats</value>
