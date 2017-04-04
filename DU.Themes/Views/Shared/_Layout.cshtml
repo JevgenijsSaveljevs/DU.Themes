@@ -77,51 +77,19 @@
                                 {
                                     <text>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            @*<img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">*@
                                             <span class="hidden-xs">@User.Identity.Name</span>
                                         </a>
-                                        <ul class="dropdown-menu">
-                                            <!-- User image -->
-                                            <li class="user-header">
-                                                @*<img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">*@
-
-                                                <p>
-                                                    Alexander Pierce - Web Developer
-                                                    <small>Member since Nov. 2012</small>
-                                                </p>
-                                            </li>
-                                            <!-- Menu Body -->
-                                            <li class="user-body">
-                                                <div class="row">
-                                                    <div class="col-xs-4 text-center">
-                                                        <a href="#">Followers</a>
-                                                    </div>
-                                                    <div class="col-xs-4 text-center">
-                                                        <a href="#">Sales</a>
-                                                    </div>
-                                                    <div class="col-xs-4 text-center">
-                                                        <a href="#">Friends</a>
-                                                    </div>
-                                                </div>
-                                                <!-- /.row -->
-                                            </li>
+                                        <ul class="dropdown-menu" style="width: auto" >
                                             <!-- Menu Footer-->
                                             <li class="user-footer">
-                                                <div class="pull-left">
-                                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                                </div>
-                                                <div class="pull-right">
                                                     @*<form method="post" resource="">
 
                                                         </form>*@
                                                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
                                                     {
                                                         @Html.AntiForgeryToken()
-                                                        <button type="submit" class="btn btn-default btn-flat">Sign out</button>
+                                                        <button type="submit" style="width: 100%" class="btn btn-default btn-flat"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</button>
                                                     }
-
-
-                                                </div>
                                             </li>
                                         </ul>
 
@@ -172,6 +140,7 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             @RenderBody()
+            <div class='clearfix'></div>
         </div>
         <!-- /.content-wrapper -->
     </div>
