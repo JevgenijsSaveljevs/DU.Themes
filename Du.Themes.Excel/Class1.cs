@@ -87,7 +87,7 @@ namespace Du.Themes.Excel
                 return;
             }
 
-            var prop = this.Properties.First(x => x.Name == descr.EntityName);
+            var prop = this.Properties.First(x => x.Name.Equals(descr.EntityName, StringComparison.InvariantCultureIgnoreCase));
 
             var setter = prop?.SetMethod;
 
