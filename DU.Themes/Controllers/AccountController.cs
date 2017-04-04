@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
@@ -135,39 +136,49 @@ namespace DU.Themes.Controllers
                 return View(model);
             }
 
-            // security over 9000 :D
             using (var client = new HttpClient())
             {
-                ServicePointManager.ServerCertificateValidationCallback =
-    delegate (object s, X509Certificate certificate,
-             X509Chain chain, SslPolicyErrors sslPolicyErrors)
-    { return true; };
+                ServicePointManager.ServerCertificateValidationCallback = delegate (
+                    object s,
+                    X509Certificate certificate,
+                    X509Chain chain,
+                    SslPolicyErrors sslPolicyErrors)
+                {
+                    return true;
+                };
+
                 var content = new FormUrlEncodedContent(new[]
                 {
                     new KeyValuePair<string, string>("student_name", model.LoginName),
                     new KeyValuePair<string, string>("student_password", model.Password)
                 });
-
-                var response = await client.PostAsync("https://pc.du.lv/Validation.php", content);
-
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    await SignInManager.SignInAsync(usr, true, model.RememberMe);
+                    var response = await client.PostAsync("https://pc.du.lv/Validation.php", content);
 
-                    return RedirectToLocal(returnUrl);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        await SignInManager.SignInAsync(usr, true, model.RememberMe);
+
+                        return RedirectToLocal(returnUrl);
+                    }
+
+                    if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    {
+                        ModelState.AddModelError("", string.Join(",", ModelResources.BadCredentials));
+                        return View(model);
+                    }
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        ModelState.AddModelError("", string.Join(",", "Login server error"));
+                        return View(model);
+                    }
                 }
-
-                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                catch (Exception ex)
                 {
-                    ModelState.AddModelError("", string.Join(",", ModelResources.BadCredentials));
-                    return View(model);
+                    ModelState.AddModelError("", "Login server error");
                 }
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    ModelState.AddModelError("", string.Join(",", "Login server error"));
-                    return View(model);
-                }       
 
                 return View(model);
             }
