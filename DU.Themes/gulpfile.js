@@ -58,7 +58,8 @@ var config = {
             "./bower_components/select2/dist/css/select2.css",
             "./bower_components/select2-bootstrap-theme/dist/select2-bootstrap.css",
             "./bower_components/datatables/media/css/dataTables.bootstrap.css",
-            "./bower_components/AdminLTE/plugins/iCheck/square/blue.css"
+            "./bower_components/AdminLTE/plugins/iCheck/square/blue.css",
+            "./assets/src/css/site.css"
         ],
         fonts: [
             "./bower_components/font-awesome/fonts/fontawesome-webfont.*",
