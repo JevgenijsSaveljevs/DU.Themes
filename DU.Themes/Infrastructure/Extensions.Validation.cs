@@ -3,7 +3,7 @@ using DU.Themes.Models;
 using DU.Themes.Validaiton;
 using FluentValidation;
 
-namespace DU.Themes.Infrastructure
+namespace DU.Themes
 {
     public partial class Extensions
     {

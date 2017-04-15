@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AuthenticationServerErrorPlaceholder" xml:space="preserve">
+    <value>Servera kļūda: {0}</value>
+  </data>
   <data name="BadCredentials" xml:space="preserve">
     <value>Nepareizs lietotāja vārds/parole</value>
+  </data>
+  <data name="NoUser" xml:space="preserve">
+    <value>No such user in system</value>
   </data>
   <data name="RequestStatus_Accepted" xml:space="preserve">
     <value>Pieteikums ir apstiprinats</value>

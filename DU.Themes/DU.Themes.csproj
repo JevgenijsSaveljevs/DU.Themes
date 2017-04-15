@@ -230,6 +230,7 @@
     <Compile Include="Api\StudyYearController.cs" />
     <Compile Include="Api\ThemesApiController.cs" />
     <Compile Include="Api\ValidationApiFilterAttribute.cs" />
+    <Compile Include="AppConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -266,6 +267,8 @@
     <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Infrastructure\Extensions.Validation.cs" />
     <Compile Include="Infrastructure\PageableResult.cs" />
+    <Compile Include="Infrastructure\RemoteAuhtentication\DUAuthenticationService.cs" />
+    <Compile Include="Infrastructure\RemoteAuhtentication\IAuthenticationService.cs" />
     <Compile Include="Infrastructure\Roles.cs" />
     <Compile Include="Infrastructure\RouteName.cs" />
     <Compile Include="Mappings\AppProfile.cs" />
@@ -310,6 +313,7 @@
     </Compile>
     <Compile Include="Models\PersonModel.cs" />
     <Compile Include="Models\RequestModel.cs" />
+    <Compile Include="Models\Request\CreateRequestModel.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\StudyYearModel.cs" />
     <Compile Include="Models\ThemeModel.cs" />

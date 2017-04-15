@@ -15,7 +15,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace DU.Themes.Infrastructure
+namespace DU.Themes
 {
     /// <summary>
     /// Application Extensions for Casting, Validating,

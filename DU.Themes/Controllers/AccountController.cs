@@ -1,4 +1,5 @@
-﻿using DU.Themes.Models;
+﻿using DU.Themes.Infrastructure.RemoteAuhtentication;
+using DU.Themes.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -23,6 +24,8 @@ namespace DU.Themes.Controllers
 
         public AccountController()
         {
+            this.AuthenticationService = new DUAuthenticationService(AppConfig.AuthenticationUrl);
+            this.AuthenticationService.ConfigureCertificateValidation();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -30,6 +33,8 @@ namespace DU.Themes.Controllers
             UserManager = userManager;
             SignInManager = signInManager;
         }
+
+        public IAuthenticationService AuthenticationService { get; private set; }
 
         public ApplicationSignInManager SignInManager
         {
@@ -64,38 +69,6 @@ namespace DU.Themes.Controllers
             return View();
         }
 
-        ////
-        //// POST: /Account/Login
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
-
-        //    // This doesn't count login failures towards account lockout
-        //    // To enable password failures to trigger account lockout, change to shouldLockout: true
-        //    var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-        //    switch (result)
-        //    {
-        //        case SignInStatus.Success:
-        //            return RedirectToLocal(returnUrl);
-        //        case SignInStatus.LockedOut:
-        //            return View("Lockout");
-        //        case SignInStatus.RequiresVerification:
-        //            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-        //        case SignInStatus.Failure:
-        //        default:
-        //            ModelState.AddModelError("", "Invalid login attempt.");
-        //            return View(model);
-        //    }
-        //}
-
-        //
-        // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -103,83 +76,59 @@ namespace DU.Themes.Controllers
         {
             if (!ModelState.IsValid)
             {
-
                 return View(model);
             }
 
-            if (model.LoginName.Equals(ConfigurationManager.AppSettings.Get("SysAdmEmail"), System.StringComparison.InvariantCultureIgnoreCase))
+            if (model.LoginName.Equals(ConfigurationManager.AppSettings.Get("SysAdmEmail"), StringComparison.InvariantCultureIgnoreCase))
             {
-                var admin = UserManager.FindByEmail(ConfigurationManager.AppSettings.Get("SysAdmEmail"));
-
-                var result = await SignInManager.PasswordSignInAsync(admin.UserName, model.Password, true, false);
-
-                switch (result)
-                {
-                    case SignInStatus.Success:
-                        return RedirectToLocal(returnUrl);
-                    case SignInStatus.LockedOut:
-                        return View("Lockout");
-                    case SignInStatus.RequiresVerification:
-                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                    case SignInStatus.Failure:
-                    default:
-                        ModelState.AddModelError("", "Invalid login attempt.");
-                        return View(model);
-                }
+                return await this.LoginAsAdmin(model, returnUrl);
             }
 
             var usr = UserManager.FindByName(model.LoginName);
 
             if (usr == null)
             {
-                ModelState.AddModelError("", "No such user in system");
+                ModelState.AddModelError("", ModelResources.NoUser);
                 return View(model);
             }
 
-            using (var client = new HttpClient())
+            return await this.LoginInternal(model, returnUrl, usr);
+        }
+
+        private async Task<ActionResult> LoginInternal(LoginViewModel model, string returnUrl, Entities.Person usr)
+        {
+            if (AppConfig.IsDevelopment)
             {
-                ServicePointManager.ServerCertificateValidationCallback = delegate (
-                    object s,
-                    X509Certificate certificate,
-                    X509Chain chain,
-                    SslPolicyErrors sslPolicyErrors)
+                await SignInManager.SignInAsync(usr, true, model.RememberMe);
+
+                return RedirectToLocal(returnUrl);
+            }
+            try
+            {
+                var response = await this.AuthenticationService.PostCredentials(model.LoginName, model.Password);
+
+                if (this.AuthenticationService.IsAuthenticated(response))
                 {
-                    return true;
-                };
+                    await SignInManager.SignInAsync(usr, true, model.RememberMe);
 
-                var content = new FormUrlEncodedContent(new[]
-                {
-                    new KeyValuePair<string, string>("student_name", model.LoginName),
-                    new KeyValuePair<string, string>("student_password", model.Password)
-                });
-                try
-                {
-                    var response = await client.PostAsync("https://pc.du.lv/Validation.php", content);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        await SignInManager.SignInAsync(usr, true, model.RememberMe);
-
-                        return RedirectToLocal(returnUrl);
-                    }
-
-                    if (response.StatusCode == HttpStatusCode.Unauthorized)
-                    {
-                        ModelState.AddModelError("", string.Join(",", ModelResources.BadCredentials));
-                        return View(model);
-                    }
-
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        ModelState.AddModelError("", string.Join(",", "Login server error"));
-                        return View(model);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", "Login server error");
+                    return RedirectToLocal(returnUrl);
                 }
 
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    ModelState.AddModelError("", ModelResources.BadCredentials);
+                    return View(model);
+                }
+                else
+                {
+                    ModelState.AddModelError("", string.Format(ModelResources.AuthenticationServerErrorPlaceholder, response.StatusCode));
+                    return View(model);
+                }
+            }
+            catch (HttpRequestException webEx)
+            {
+                var baseEx = webEx.GetBaseException();                
+                ModelState.AddModelError("", string.Format(ModelResources.AuthenticationServerErrorPlaceholder, baseEx.Message));
                 return View(model);
             }
         }
@@ -220,6 +169,27 @@ namespace DU.Themes.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        private async Task<ActionResult> LoginAsAdmin(LoginViewModel model, string returnUrl)
+        {
+            var admin = UserManager.FindByEmail(ConfigurationManager.AppSettings.Get("SysAdmEmail"));
+
+            var result = await SignInManager.PasswordSignInAsync(admin.UserName, model.Password, true, false);
+
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToLocal(returnUrl);
+                case SignInStatus.LockedOut:
+                    return View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                case SignInStatus.Failure:
+                default:
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                    return View(model);
+            }
         }
 
         #region Helpers

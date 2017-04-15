@@ -79,17 +79,17 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                             <span class="hidden-xs">@User.Identity.Name</span>
                                         </a>
-                                        <ul class="dropdown-menu dropdrown-border" style="width: auto" >
+                                        <ul class="dropdown-menu dropdrown-border" style="width: auto">
                                             <!-- Menu Footer-->
                                             <li class="user-footer">
-                                                    @*<form method="post" resource="">
+                                                @*<form method="post" resource="">
 
-                                                        </form>*@
-                                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
-                                                    {
-                                                        @Html.AntiForgeryToken()
-                                                        <button type="submit" style="width: 100%" class="btn btn-default btn-flat"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</button>
-                                                    }
+                                                    </form>*@
+                                                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" style="width: 100%" class="btn btn-default btn-flat"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</button>
+                                                }
                                             </li>
                                         </ul>
 
@@ -147,7 +147,23 @@
     @Html.Partial("_Components")
 
     <script src="~/assets/dist/js/bundle.js"></script>
+    
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    var resizeDataTables = function () {
+        //        console.log('resize');
+        //        var table = $('#table').DataTable();
+        //        if (table) {
+        //            console.log(table);
+        //            table.draw();
+        //            table.columns.adjust().draw();
+        //        }
+        //    };
+        //    window.onresize = resizeDataTables;
+        //});
+
+    </script>
     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Teacher))
     {
         <script type="text/javascript">

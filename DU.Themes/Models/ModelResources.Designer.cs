@@ -61,11 +61,29 @@ namespace DU.Themes.Models {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Servera kļūda: {0}.
+        /// </summary>
+        internal static string AuthenticationServerErrorPlaceholder {
+            get {
+                return ResourceManager.GetString("AuthenticationServerErrorPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nepareizs lietotāja vārds/parole.
         /// </summary>
         internal static string BadCredentials {
             get {
                 return ResourceManager.GetString("BadCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No such user in system.
+        /// </summary>
+        internal static string NoUser {
+            get {
+                return ResourceManager.GetString("NoUser", resourceCulture);
             }
         }
         

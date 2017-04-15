@@ -14,52 +14,50 @@
     </ol>
 </section>
 <section class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">@Resources.YearListHeading</h3>
-                    </div>
-                    <div class="box-body">
-                        @if (ViewBag.Total == 0)
-                        {
-                            <div class="alert alert-warning alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <h4><i class="icon fa fa-warning"></i> @Resources.Alert!</h4>
-                                <div>@Resources.NoYearCreated</div>
-                                <div><a href="@Url.Action("CreateYear", "Maintenance")" class="btn btn-info">@Resources.CreateYear</a></div>
-                            </div>
-                        }
-                        else
-                        {
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Is Current</th>
-                                        <th>@Resources.YearName</th>
-                                        <th>&nbsp;</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var year in Model)
-                                    {
-                                        <tr>
-                                            <td class="col-md-1"></td>
-                                            <td class="col-md-9">@year.Name</td>
-                                            <td><a href="@Url.Action("EditYear", "Maintenance", new { id = year.Id })" class="btn btn-info">@Resources.Edit</a></td>
-                                        </tr>
-                                    }
-                                </tbody>
-
-                            </table>
-                            <div><a href="@Url.Action("CreateYear", "Maintenance")" class="btn btn-info">@Resources.CreateYear</a></div>
-                        }
-
-                    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@Resources.YearListHeading</h3>
                 </div>
-                <!-- /.box -->
+                <div class="box-body">
+                    @if (ViewBag.Total == 0)
+                    {
+                        <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-warning"></i> @Resources.Alert!</h4>
+                            <div>@Resources.NoYearCreated</div>
+                            <div><a href="@Url.Action("CreateYear", "Maintenance")" class="btn btn-info">@Resources.CreateYear</a></div>
+                        </div>
+                    }
+                    else
+                    {
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Is Current</th>
+                                    <th>@Resources.YearName</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var year in Model)
+                                {
+                                    <tr>
+                                        <td class="col-md-1"></td>
+                                        <td class="col-md-9">@year.Name</td>
+                                        <td><a href="@Url.Action("EditYear", "Maintenance", new { id = year.Id })" class="btn btn-info">@Resources.Edit</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                            <div><a href="@Url.Action("CreateYear", "Maintenance")" class="btn btn-info">@Resources.CreateYear</a></div>
+                    }
+
+                </div>
             </div>
+            <!-- /.box -->
         </div>
     </div>
 </section>

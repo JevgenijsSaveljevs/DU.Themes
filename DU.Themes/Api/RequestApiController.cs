@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Data.Entity;
+using DU.Themes.Models.Request;
 
 namespace DU.Themes.Api
 {
@@ -216,7 +217,7 @@ namespace DU.Themes.Api
 
         [HttpPost]
         [Authorize(Roles = Roles.Student)]
-        public async Task Create(RequestModel request)
+        public async Task Create(CreateRequestModel request)
         {
             var userId = Convert.ToInt64(this.User.Identity.GetUserId());
 
@@ -284,7 +285,7 @@ namespace DU.Themes.Api
             }
         }
 
-        private void PreapareEntity(Request requestDB, RequestModel request, DbContext ctx)
+        private void PreapareEntity(Request requestDB, CreateRequestModel request, DbContext ctx)
         {
             if (request.Start != null)
             {
