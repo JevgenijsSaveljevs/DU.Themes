@@ -158,29 +158,9 @@
                             data: JSON.stringify(self.entity),
                             contentType: "application/json; charset=utf-8"
                         }).done(function (data) {
-                            self.refresh();
-                        }).error(function (xhr, param1, param2, param3) {
-                            try {
-                                var error = JSON.parse(xhr.responseText);
-
-                                if (error.ValidationErrors) {
-                                    $.each(error.ValidationErrors, function (idx, valErr) {
-                                        toastr.error(valErr.ErrorMessage);
-                                    })
-                                }
-
-                                if (error.Message) {
-                                    toastr.error(error.Message);
-                                }
-
-                            } catch (err) {
-                                toastr.error(param2);
-
-                            }
-
-
-                            console.log(xhr, param1, param2, param3);
-                        }).always(function () {
+                                self.refresh();
+                            }).error(handleError)
+                            .always(function () {
 
                         });
                     },

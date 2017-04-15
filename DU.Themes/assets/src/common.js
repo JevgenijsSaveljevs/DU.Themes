@@ -30,20 +30,15 @@ function getData(url, callback) {
 function handleError(xhr, param1, param2, param3) {
     try {
         var error = JSON.parse(xhr.responseText);
-        console.log('error is:', error);
 
         if (error.ValidationErrors) {
             $.each(error.ValidationErrors, function (idx, valErr) {
-                toastr.error(valErr.ErrorMessage);
+                toastr.warning(valErr.ErrorMessage);
             })
         }
 
         if (error.Message) {
             toastr.error(error.Message);
-        }
-
-        if (error.GeneralError) {
-            toastr.error(error.GeneralError);
         }
 
     } catch (err) {
