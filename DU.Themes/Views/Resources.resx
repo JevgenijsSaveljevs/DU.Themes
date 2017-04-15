@@ -219,4 +219,7 @@
   <data name="IsCurrentYear" xml:space="preserve">
     <value>Tekošais mācibu gāds</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>Statuss</value>
+  </data>
 </root>

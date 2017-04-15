@@ -21,6 +21,7 @@
                             <th>@Resources.Student</th>
                             <th>@Resources.CreatedOn</th>
                             <th>@Resources.StartYear</th>
+                            <th>@Resources.Status</th>
                             <th>@Resources.EndYear</th>
                             <th></th>
                         </tr>
@@ -64,6 +65,11 @@
                     {
                         "data": "End.Start",
                         render: function (data, type, row, meta) { return row.End.Name; }
+                    },
+                    {
+                        data: "StatusRepresentation",
+                        render: function (data, type, entity, meta) { return getStatusBadge(data, entity.Status); },
+                        sortable: false
                     },
                     {
                         sortable: false,

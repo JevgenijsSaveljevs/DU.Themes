@@ -51,6 +51,22 @@ function dataTablesDefaults() {
 
 }
 
+function getStatusBadge(text, id) {
+    var labelClass = 'label-info';
+    switch (id) {
+        case 1: labelClass = 'label-info'; break;
+        case 6: labelClass = 'label-warning'; break;
+        case 10: labelClass = 'label-success'; break;
+        case 16: labelClass = 'label-danger'; break;
+        default: labelClass = 'label-info'; break;
+    }
+
+    var htmlTemplate = '<span class="label {{css}}" style="font-size: small">{{text}}</span>';
+    var template = Handlebars.compile(htmlTemplate);
+
+    return template({ css: labelClass, text: text });
+}
+
 
 dataTablesDefaults.prototype.language = {
     "processing": "Uzgaidiet...",

@@ -268,6 +268,15 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Statuss.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Students.
         /// </summary>
         public static string Student {
