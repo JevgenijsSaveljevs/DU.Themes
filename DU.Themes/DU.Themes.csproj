@@ -343,6 +343,7 @@
       <DependentUpon>ValidationErrors.resx</DependentUpon>
     </Compile>
     <Compile Include="Validaiton\ValidatorBase.cs" />
+    <Compile Include="Views\HtmlHelperExtensions.cs" />
     <Compile Include="Views\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

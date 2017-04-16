@@ -117,19 +117,19 @@
                     <li class="header">MAIN NAVIGATION</li>
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Teacher))
                     {
-                        <li><a href="@Url.Action("TeacherRequests", "Request")"><i class="fa fa-circle-o text-aqua"></i> <span>Requests (Lecturers)</span></a></li>
-                        <li><a href="@Url.Action("Teacher", "Themes")"><i class="fa fa-circle-o text-aqua"></i> <span>Themes (Lecturers)</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("TeacherRequests", "Request")"><a href="@Url.Action("TeacherRequests", "Request")"><i class="fa fa-circle-o text-aqua"></i> <span>Requests (Lecturers)</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Teacher", "Themes")"><a href="@Url.Action("Teacher", "Themes")"><i class="fa fa-circle-o text-aqua"></i> <span>Themes (Lecturers)</span></a></li>
                     }
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Student))
                     {
-                        <li><a href="@Url.Action("Index", "Request")"><i class="fa fa-circle-o text-aqua"></i> <span>Request (Students)</span></a></li>
-                        <li><a href="@Url.Action("Student", "Themes")"><i class="fa fa-circle-o text-aqua"></i> <span>Themes (Students)</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Index", "Request")"><a href="@Url.Action("Index", "Request")"><i class="fa fa-circle-o text-aqua"></i> <span>Request (Students)</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Student", "Themes")"><a href="@Url.Action("Student", "Themes")"><i class="fa fa-circle-o text-aqua"></i> <span>Themes (Students)</span></a></li>
                     }
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.SystemAdministrator))
                     {
-                        <li><a href="@Url.Action("Import", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Import</span></a></li>
-                        <li><a href="@Url.Action("Persons", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Users</span></a></li>
-                        <li><a href="@Url.Action("StudyYearsList", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Macibu gadi</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Import", "Maintenance")"><a href="@Url.Action("Import", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Import</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Persons", "Maintenance")"><a href="@Url.Action("Persons", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Users</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("StudyYearsList", "Maintenance")"><a href="@Url.Action("StudyYearsList", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Macibu gadi</span></a></li>
                     }
                 </ul>
             </section>
