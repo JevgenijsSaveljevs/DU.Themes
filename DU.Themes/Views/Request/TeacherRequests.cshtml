@@ -38,6 +38,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#table').DataTable({
+                "order": [[2, 'desc']],
                 "language": dt.language,
                 "ajax": {
                     "method": "POST",
