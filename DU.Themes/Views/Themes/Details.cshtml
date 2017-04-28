@@ -3,9 +3,7 @@
         <div class="col-md-12">
             <div class="box box-info">
                 <div class="box-header">
-                    <h1 class="page-header"><i class="@Icons.Edit" aria-hidden="true"></i>@Resources.EditRequest</h1>
-                    @*<small><b>Status: </b>New</small>*@
-                    <b>Status: </b><span v-text="entity.StatusRepresentation"></span>
+                    <h1 class="page-header"><i class="@Icons.Info" aria-hidden="true"></i>@Resources.ThemeDetails</h1>
                 </div>
                 <div class="box-body">
                     <div class="row">
@@ -25,7 +23,7 @@
                                 <select2 url="@Url.HttpRouteUrl(RouteName.TeachersLookup, new { })"
                                          :settings="personSettings"
                                          display-prop="FullName"
-                                         v-model="entity.Reviewr">
+                                         v-model="entity.Reviewer">
                                 </select2>
                             </div>
                         </div>
@@ -34,13 +32,13 @@
                         <div class="col-md-6">
                             <label class="input-heading"><i class="@Icons.File" aria-hidden="true"></i>@Resources.ThemeLv</label>
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="@Resources.ThemeLv" v-model="entity.ThemeLV"></textarea>
+                                <textarea disabled="disabled" class="form-control" placeholder="@Resources.ThemeLv" v-model="entity.ThemeLV"></textarea>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <label class="input-heading"><i class="@Icons.File" aria-hidden="true"></i>@Resources.ThemeEng</label>
-                            <textarea v-model="entity.ThemeENG" class="form-control" placeholder="@Resources.ThemeEng"></textarea>
+                            <textarea disabled="disabled" v-model="entity.ThemeENG" class="form-control" placeholder="@Resources.ThemeEng"></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -68,13 +66,7 @@
                 </div>
                 <div class="box-footer">
                     <div class="pull-left">
-                        <a href="@Url.Action("Index","Request")" class="btn btn-default"><i class="@Icons.List" aria-hidden="true"></i>@Resources.ToList</a>
-                        <button type="button" class="btn btn-danger" v-on:click="reject">@Resources.CancelRequest</button>
-                    </div>
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-info" v-on:click="needImprovements">@Resources.NeedImprovements</button>
-                        <button type="button" class="btn btn-primary" v-on:click="submit">@Resources.Save</button>
-                        <button type="button" class="btn btn-success" v-on:click="createTheme">@Resources.CreateTheme</button>
+                        <a href="@Url.Action("Student","Themes")" class="btn btn-default"><i class="@Icons.List" aria-hidden="true"></i>@Resources.ToList</a>
                     </div>
                 </div>
             </div>
@@ -102,7 +94,8 @@
                         more: (params.page * this.pageSize) < data.count
                     }
                 };
-            }
+            },
+            disabled: true
         }
 
         personSettings = {
@@ -122,14 +115,15 @@
                         more: (params.page * this.pageSize) < data.count
                     }
                 };
-            }
+            },
+            disabled: true
         }
 
         var app = {};
 
         async.parallel([
             function (callback) {
-                getData("@Url.HttpRouteUrl(RouteName.GetTeacherRequests, new { Id = ViewBag.Id })", callback);
+                getData("@Url.HttpRouteUrl(RouteName.GetStudentTheme, new { Id = ViewBag.Id })", callback);
             },
         ], function (err, result) {
 
@@ -146,45 +140,34 @@
                     submit: function () {
                         var self = this;
                         $.ajax({
-                            url: "@Url.HttpRouteUrl(RouteName.UpdateRequestStudent , new { })",
+                            url: "@Url.HttpRouteUrl(RouteName.UpdateThemeByTeacher, new { })",
                             method: "POST",
                             data: JSON.stringify(self.entity),
                             contentType: "application/json; charset=utf-8"
                         }).done(function (data) {
-                            navigation.redirect("@Url.Action("Index", "Request")");
+                            navigation.redirect("@Url.Action("Teacher", "Themes")");
                         }).error(handleError);
                     },
-                    createTheme: function () {
+                    inactivate: function () {
                         var self = this;
                         $.ajax({
-                            url: "@Url.HttpRouteUrl(RouteName.CreateTheme , new { })",
+                            url: "@Url.HttpRouteUrl(RouteName.MarkThemeInactive, new { })",
                             method: "POST",
                             data: JSON.stringify(self.entity),
                             contentType: "application/json; charset=utf-8"
                         }).done(function (data) {
-                            navigation.redirect("@Url.Action("TeacherRequests", "Request")");
+                            navigation.redirect("@Url.Action("Teacher", "Themes")");
                         }).error(handleError);
                     },
-                    needImprovements: function () {
+                    remove: function () {
                         var self = this;
                         $.ajax({
-                            url: "@Url.HttpRouteUrl(RouteName.RequestNeedImprovements , new { })",
+                            url: "@Url.HttpRouteUrl(RouteName.DeleteTheme, new { })",
                             method: "POST",
                             data: JSON.stringify(self.entity),
                             contentType: "application/json; charset=utf-8"
                         }).done(function (data) {
-                            navigation.redirect("@Url.Action("TeacherRequests", "Request")");
-                        }).error(handleError);
-                    },
-                    reject: function () {
-                        var self = this;
-                        $.ajax({
-                            url: "@Url.HttpRouteUrl(RouteName.RejectByTeacher , new { })",
-                            method: "POST",
-                            data: JSON.stringify(self.entity),
-                            contentType: "application/json; charset=utf-8"
-                        }).done(function (data) {
-                            navigation.redirect("@Url.Action("TeacherRequests", "Request")");
+                            navigation.redirect("@Url.Action("Teacher", "Themes")");
                         }).error(handleError);
                     }
                 }

@@ -1,110 +1,104 @@
-﻿
-@{
-    ViewBag.Title = "Edit";
-}
-
-<section class="content">
+﻿<section class="content">
     <div class="col-md-12">
-        <div class="col-md-8" id="vue-app">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 v-text="entity.FullName"></h3>
-                </div>
-                <div class="box-body">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label for="inputName" class="col-sm-2 control-label">Vārds</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName" placeholder="Vārds" v-model="entity.FirstName">
-                            </div>
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 v-text="entity.FullName"></h3>
+            </div>
+            <div class="box-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputName" class="col-sm-2 control-label">Vārds</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputName" placeholder="Vārds" v-model="entity.FirstName">
                         </div>
-                        <div class="form-group">
-                            <label for="inputName" class="col-sm-2 control-label">Uzvārds</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName" placeholder="Uzvārds" v-model="entity.LastName">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.Email">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-sm-2 control-label">StudentIdentifier</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.StudentIdentifier">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-sm-2 control-label">ProgramName</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.ProgramName">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-sm-2 control-label">ProgramLevel</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.ProgramLevel">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-sm-2 control-label">StudyForm</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.StudyForm">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-sm-2 control-label">Year</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.Year">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-sm-2 control-label">Is Admin</label>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" v-model="entity.IsAdmin">
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-sm-2 control-label">Is Teacher</label>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" v-model="entity.IsTeacher">
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputEmail" class="col-sm-2 control-label">Is Student</label>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" v-model="entity.IsStudent">
-                                </label>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-                <div class="box-footer">
-                    <div class="pull-left">
-                        <a class="btn btn-default" href="@Url.Action("Persons", "Maintenance")">Cancel</a>
                     </div>
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-info" v-on:click="submit">Submit</button>
+                    <div class="form-group">
+                        <label for="inputName" class="col-sm-2 control-label">Uzvārds</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputName" placeholder="Uzvārds" v-model="entity.LastName">
+                        </div>
                     </div>
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.Email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">StudentIdentifier</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.StudentIdentifier">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">ProgramName</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.ProgramName">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">ProgramLevel</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.ProgramLevel">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">StudyForm</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.StudyForm">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">Year</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.Year">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">Is Admin</label>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="entity.IsAdmin">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">Is Teacher</label>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="entity.IsTeacher">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">Is Student</label>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="entity.IsStudent">
+                            </label>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="box-footer">
+                <div class="pull-left">
+                    <a class="btn btn-default" href="@Url.Action("Persons", "Maintenance")">Cancel</a>
+                </div>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-info" v-on:click="submit">@Resources.Save</button>
                 </div>
             </div>
         </div>
     </div>
+
 
 </section>
 

@@ -7,11 +7,11 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link href="~/assets/dist/css/bundle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
-<body class="hold-transition skin-blue-light sidebar-mini">
+<body class="hold-transition skin-blue-light sidebar-mini @Html.NavigationExpnaded(Request.Cookies)">
     <!-- Site wrapper -->
     <div class="wrapper">
-
         <header class="main-header">
             <!-- Logo -->
             <a href="@Url.Action("Index", "Request")" class="logo">
@@ -23,13 +23,12 @@
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" id="hamburger">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- Notifications: style can be found in dropdown.less -->
@@ -114,22 +113,21 @@
             <section class="sidebar">
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
-                    <li class="header">MAIN NAVIGATION</li>
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Teacher))
                     {
-                        <li class="@Html.AddActiveClassIfRoutesMatch("TeacherRequests", "Request")"><a href="@Url.Action("TeacherRequests", "Request")"><i class="fa fa-circle-o text-aqua"></i> <span>Requests (Lecturers)</span></a></li>
-                        <li class="@Html.AddActiveClassIfRoutesMatch("Teacher", "Themes")"><a href="@Url.Action("Teacher", "Themes")"><i class="fa fa-circle-o text-aqua"></i> <span>Themes (Lecturers)</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("TeacherRequests", "Request")"><a href="@Url.Action("TeacherRequests", "Request")"><i class="fa fa-user-plus text-aqua" aria-hidden="true"></i><span>Requests (Lecturers)</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Teacher", "Themes")"><a href="@Url.Action("Teacher", "Themes")"><i class="fa fa-address-card-o text-aqua" aria-hidden="true"></i><span>Themes (Lecturers)</span></a></li>
                     }
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Student))
                     {
-                        <li class="@Html.AddActiveClassIfRoutesMatch("Index", "Request")"><a href="@Url.Action("Index", "Request")"><i class="fa fa-circle-o text-aqua"></i> <span>Request (Students)</span></a></li>
-                        <li class="@Html.AddActiveClassIfRoutesMatch("Student", "Themes")"><a href="@Url.Action("Student", "Themes")"><i class="fa fa-circle-o text-aqua"></i> <span>Themes (Students)</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Index", "Request")"><a href="@Url.Action("Index", "Request")"><i class="fa fa-user-plus text-aqua" aria-hidden="true"></i> <span>Request (Students)</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Student", "Themes")"><a href="@Url.Action("Student", "Themes")"><i class="fa fa-address-card-o text-aqua" aria-hidden="true"></i> <span>Themes (Students)</span></a></li>
                     }
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.SystemAdministrator))
                     {
-                        <li class="@Html.AddActiveClassIfRoutesMatch("Import", "Maintenance")"><a href="@Url.Action("Import", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Import</span></a></li>
-                        <li class="@Html.AddActiveClassIfRoutesMatch("Persons", "Maintenance")"><a href="@Url.Action("Persons", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Users</span></a></li>
-                        <li class="@Html.AddActiveClassIfRoutesMatch("StudyYearsList", "Maintenance")"><a href="@Url.Action("StudyYearsList", "Maintenance")"><i class="fa fa-circle-o text-aqua"></i> <span>Macibu gadi</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Import", "Maintenance")"><a href="@Url.Action("Import", "Maintenance")"><i class="fa fa-upload text-aqua" aria-hidden="true"></i> <span>Import</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Persons", "Maintenance")"><a href="@Url.Action("Persons", "Maintenance")"><i class="fa fa-users text-aqua" aria-hidden="true"></i> <span>Users</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("StudyYearsList", "Maintenance")"><a href="@Url.Action("StudyYearsList", "Maintenance")"><i class="fa fa-calendar text-aqua" aria-hidden="true"></i> <span>Macibu gadi</span></a></li>
                     }
                 </ul>
             </section>
@@ -140,6 +138,7 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             @RenderBody()
+            
             <div class='clearfix'></div>
         </div>
         <!-- /.content-wrapper -->
@@ -149,24 +148,18 @@
     <script src="~/assets/dist/js/bundle.js"></script>
     
     @RenderSection("scripts", required: false)
-    <script type="text/javascript">
-        //$(document).ready(function () {
-        //    var resizeDataTables = function () {
-        //        console.log('resize');
-        //        var table = $('#table').DataTable();
-        //        if (table) {
-        //            console.log(table);
-        //            table.draw();
-        //            table.columns.adjust().draw();
-        //        }
-        //    };
-        //    window.onresize = resizeDataTables;
-        //});
-
-    </script>
     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Teacher))
     {
         <script type="text/javascript">
+            $("body").on('expanded.pushMenu', function () {
+                setCookie('Show-Navigation', true);
+                console.log('cookie', document.cookie);
+            });
+
+            $("body").on('collapsed.pushMenu', function () {
+                setCookie('Show-Navigation', false);
+                console.log('cookie', document.cookie);
+            });
 
             Handlebars.registerHelper('notification-widget', function (data, options) {
                 out = "";

@@ -70,7 +70,7 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Atcelt piekeikumu.
+        ///   Looks up a localized string similar to Atcelt.
         /// </summary>
         public static string CancelRequest {
             get {
@@ -97,7 +97,7 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apstiprināt piteikumu un izveidot tēmu.
+        ///   Looks up a localized string similar to Izveidot tēmu.
         /// </summary>
         public static string CreateTheme {
             get {
@@ -138,6 +138,24 @@ namespace DU.Themes.Views {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rediģēt pieteikumu.
+        /// </summary>
+        public static string EditRequest {
+            get {
+                return ResourceManager.GetString("EditRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rediģēt tēmu.
+        /// </summary>
+        public static string EditTheme {
+            get {
+                return ResourceManager.GetString("EditTheme", resourceCulture);
             }
         }
         
@@ -250,6 +268,15 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recenzents.
+        /// </summary>
+        public static string Reviewer {
+            get {
+                return ResourceManager.GetString("Reviewer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saglabāt.
         /// </summary>
         public static string Save {
@@ -318,6 +345,15 @@ namespace DU.Themes.Views {
         public static string Teacher {
             get {
                 return ResourceManager.GetString("Teacher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tēmas detaļas.
+        /// </summary>
+        public static string ThemeDetails {
+            get {
+                return ResourceManager.GetString("ThemeDetails", resourceCulture);
             }
         }
         

@@ -1,22 +1,15 @@
-﻿
-@{
-    ViewBag.Title = "New";
-}
-
-<section class="content" id="vue-app">
+﻿<section class="content" id="vue-app">
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="box box-info">
                 <div class="box-header">
-                    <h1 class="page-header">Edit Request</h1>
-                    @*<small><b>Status: </b>New</small>*@
+                    <h1 class="page-header"><i class="@Icons.Edit" aria-hidden="true"></i>@Resources.EditTheme</h1>
                     <b>Status: </b><span v-text="entity.StatusRepresentation"></span>
                 </div>
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="input-heading">Teacher</label>
+                            <label class="input-heading"><i class="@Icons.User" aria-hidden="true"></i>@Resources.Teacher</label>
                             <div class="form-group">
                                 <select2 url="@Url.HttpRouteUrl(RouteName.TeachersLookup, new { })"
                                          :settings="personSettings"
@@ -26,7 +19,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="input-heading">Reviewr</label>
+                            <label class="input-heading"><i class="@Icons.User" aria-hidden="true"></i>@Resources.Reviewer</label>
                             <div class="form-group">
                                 <select2 url="@Url.HttpRouteUrl(RouteName.TeachersLookup, new { })"
                                          :settings="personSettings"
@@ -38,20 +31,20 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="input-heading">@Resources.ThemeLv</label>
+                            <label class="input-heading"><i class="@Icons.File" aria-hidden="true"></i>@Resources.ThemeLv</label>
                             <div class="form-group">
                                 <textarea class="form-control" placeholder="@Resources.ThemeLv" v-model="entity.ThemeLV"></textarea>
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <label class="input-heading">@Resources.ThemeEng</label>
+                            <label class="input-heading"><i class="@Icons.File" aria-hidden="true"></i>@Resources.ThemeEng</label>
                             <textarea v-model="entity.ThemeENG" class="form-control" placeholder="@Resources.ThemeEng"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="input-heading">Start</label>
+                            <label class="input-heading"><i class="@Icons.Calendar" aria-hidden="true"></i>@Resources.StartYear</label>
                             <div class="form-group">
                                 <select2 url="@Url.HttpRouteUrl(RouteName.StudyYears, new { })"
                                          :settings="select2Settings"
@@ -61,7 +54,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="input-heading">End</label>
+                            <label class="input-heading"><i class="@Icons.Calendar" aria-hidden="true"></i>@Resources.EndYear</label>
                             <div class="form-group">
                                 <select2 url="@Url.HttpRouteUrl(RouteName.StudyYears, new { })"
                                          :settings="select2Settings"
@@ -74,17 +67,16 @@
                 </div>
                 <div class="box-footer">
                     <div class="pull-left">
-                        <a href="@Url.Action("Index","Request")" class="btn btn-default">@Resources.ToList</a>
+                        <a href="@Url.Action("Index","Request")" class="btn btn-default"><i class="@Icons.List" aria-hidden="true"></i>@Resources.ToList</a>
                         <button type="button" class="btn btn-danger" v-on:click="remove">@Resources.Delete</button>
                         <button type="button" class="btn btn-default" v-on:click="inactivate">@Resources.InactivateTheme</button>
                     </div>
                     <div class="pull-right">
-                        <button type="button" class="btn btn-primary" v-on:click="submit">Submit</button>
+                        <button type="button" class="btn btn-primary" v-on:click="submit">@Resources.Save</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-2"></div>
     </div>
 </section>
 
@@ -184,6 +176,7 @@
                     }
                 }
             });
+            updateAllTextAreasHeights();
         });
 
     </script>

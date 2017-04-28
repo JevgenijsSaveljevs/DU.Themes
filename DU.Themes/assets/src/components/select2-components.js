@@ -16,8 +16,10 @@
 
         var select = element.select2(options);
 
-        //console.log('select2 : :select', this.value);
-
+        if (options.disabled) {
+            $(this.$el).prop('disabled', true);
+        }
+       
         select.on('select2:select', function (customEvent) {
             vm.$emit('input', customEvent.params.data.entity);
         });

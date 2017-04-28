@@ -261,6 +261,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Icons.cs" />
     <Compile Include="Infrastructure\Comparers\Comparers.cs" />
     <Compile Include="Infrastructure\Comparers\ModelBaseComparer.cs" />
     <Compile Include="Infrastructure\Excel\ExcelHelper.cs" />
@@ -435,6 +436,7 @@
     <Content Include="Views\Request\Respond.cshtml" />
     <Content Include="Views\Themes\Teacher.cshtml" />
     <Content Include="Views\Themes\Student.cshtml" />
+    <Content Include="Views\Themes\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702261520338_Initial.resx">

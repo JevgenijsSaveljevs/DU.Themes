@@ -1,3 +1,7 @@
 .dropdrown-border {
  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
+
+i.fa, i.icon {
+    margin-right: 0.4em;
+}

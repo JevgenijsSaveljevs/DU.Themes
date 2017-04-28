@@ -21,8 +21,16 @@ namespace DU.Themes.Controllers
         }
 
         [Authorize(Roles = Roles.Student)]
+        public ActionResult Details(string Id)
+        {
+            ViewBag.Id = Id;
+            return View();
+        }
+
+        [Authorize(Roles = Roles.Student)]
         public ActionResult Student(string Id)
         {
+            ViewBag.Id = Id;
             return View();
         }
     }

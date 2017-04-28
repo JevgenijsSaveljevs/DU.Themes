@@ -7,7 +7,8 @@
     settings = settings || {};
 
     var fctry = this;
-    this.placeholder = settings.placeholder || "Ievadiet tekstu";
+    this.disabled = settings.disabled;
+    this.placeholder = settings.placeholder || this.disabled ? "" : "Ievadiet tekstu";
     this.defaultPageSize = settings.pageSize || 15;
     this.defaultProcessResultsCallback = settings.processResults || function (data, params) {
         var txts = data.items.map(function (input) {
@@ -42,6 +43,7 @@
             placeholder: fctry.placeholder,
             maximumSelectionLength: 1,
             allowClear: true,
+            disabled: fctry.disabled,
             ajax: {
                 url: url,
                 dataType: 'json',

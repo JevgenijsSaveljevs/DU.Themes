@@ -1,10 +1,5 @@
 ﻿@model IEnumerable<DU.Themes.Models.StudyYearModel>
 @using DU.Themes.Views;
-@{
-    ViewBag.Title = Resources.YearListHeading;
-
-}
-
 <section class="content">
     <div class="row">
         <div class="col-md-12">
@@ -36,7 +31,7 @@
                                 @foreach (var year in Model)
                                 {
                                     <tr>
-                                        <td class="col-md-1"></td>
+                                        <td class="col-md-1">@{if (year.IsCurrent) {<text><i class="fa fa-check text-green" aria-hidden="true"></i></text>}}</td>
                                         <td class="col-md-9">@year.Name</td>
                                         <td><a href="@Url.Action("EditYear", "Maintenance", new { id = year.Id })" class="btn btn-info">@Resources.Edit</a></td>
                                     </tr>

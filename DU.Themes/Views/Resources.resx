@@ -178,10 +178,10 @@
     <value>Gāds</value>
   </data>
   <data name="CancelRequest" xml:space="preserve">
-    <value>Atcelt piekeikumu</value>
+    <value>Atcelt</value>
   </data>
   <data name="CreateTheme" xml:space="preserve">
-    <value>Apstiprināt piteikumu un izveidot tēmu</value>
+    <value>Izveidot tēmu</value>
   </data>
   <data name="NeedImprovements" xml:space="preserve">
     <value>Vajag labojumi</value>
@@ -221,5 +221,17 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Statuss</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>Recenzents</value>
+  </data>
+  <data name="ThemeDetails" xml:space="preserve">
+    <value>Tēmas detaļas</value>
+  </data>
+  <data name="EditRequest" xml:space="preserve">
+    <value>Rediģēt pieteikumu</value>
+  </data>
+  <data name="EditTheme" xml:space="preserve">
+    <value>Rediģēt tēmu</value>
   </data>
 </root>
