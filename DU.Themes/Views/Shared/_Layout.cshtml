@@ -146,21 +146,21 @@
     @Html.Partial("_Components")
 
     <script src="~/assets/dist/js/bundle.js"></script>
-    
+    <script type="text/javascript">
+        $("body").on('expanded.pushMenu', function () {
+            setCookie('Show-Navigation', true);
+            console.log('cookie', document.cookie);
+        });
+
+        $("body").on('collapsed.pushMenu', function () {
+            setCookie('Show-Navigation', false);
+            console.log('cookie', document.cookie);
+        });
+    </script>
     @RenderSection("scripts", required: false)
     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Teacher))
     {
         <script type="text/javascript">
-            $("body").on('expanded.pushMenu', function () {
-                setCookie('Show-Navigation', true);
-                console.log('cookie', document.cookie);
-            });
-
-            $("body").on('collapsed.pushMenu', function () {
-                setCookie('Show-Navigation', false);
-                console.log('cookie', document.cookie);
-            });
-
             Handlebars.registerHelper('notification-widget', function (data, options) {
                 out = "";
                 console.log('data in widget', data);
