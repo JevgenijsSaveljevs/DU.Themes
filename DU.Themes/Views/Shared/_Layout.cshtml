@@ -163,7 +163,6 @@
         <script type="text/javascript">
             Handlebars.registerHelper('notification-widget', function (data, options) {
                 out = "";
-                console.log('data in widget', data);
 
                 if (data.count > 0) {
                     if (data.count == 1) {
@@ -196,7 +195,9 @@
                 var ouput = template({ data: data });
 
                 $('#request-notifications').html(ouput);
-                $('#notification-count').text(data.count);
+                if (data.count > 0) {
+                    $('#notification-count').text(data.count);
+                }
             });
         </script>
     }
