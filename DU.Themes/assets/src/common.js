@@ -107,17 +107,14 @@ function navigationHelper() {
 var navigation = new navigationHelper();
 
 function updateTextAreaHeight(textAreaElement) {
-    var height = textAreaElement.scrollHeight + textAreaElement.scrollTop;
-    textAreaElement.style.height = height + 'px';
+    textAreaElement.style.height = textAreaElement.scrollHeight + 'px';
 }
 
 function updateAllTextAreasHeights() {
     var textAreas = document.getElementsByTagName("textarea");
-    console.log('updateAllTextAreasHeights');
     for (var i = 0; i < textAreas.length; i++) {
         updateTextAreaHeight(textAreas[i]);
         handleTextAreaKeyPress(textAreas[i]);
-        console.log(i);
     }
 }
 
