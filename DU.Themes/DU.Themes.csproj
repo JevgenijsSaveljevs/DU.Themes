@@ -376,6 +376,8 @@
     <Content Include="assets\dist\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\dist\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\dist\js\bundle.js" />
+    <Content Include="assets\dist\logo.png" />
+    <Content Include="assets\dist\WKLTyf--.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="gulpfile.js" />

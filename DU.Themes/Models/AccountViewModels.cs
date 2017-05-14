@@ -48,12 +48,12 @@ namespace DU.Themes.Models
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Studenta Id lauks ir obligāts")]
         [Display(Name = "Student Id")]
        // [EmailAddress]
         public string LoginName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Paroles lauks ir obligāts")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

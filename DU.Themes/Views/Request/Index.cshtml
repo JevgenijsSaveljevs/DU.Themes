@@ -33,6 +33,7 @@
             $('#table').DataTable({
                 "order": [[2, 'desc']],
                 "language": dt.language,
+                "autoWidth": false,
                 "ajax": {
                     "method": "POST",
                     "url": "@Url.HttpRouteUrl(RouteName.DataTablesRequests, new { })"

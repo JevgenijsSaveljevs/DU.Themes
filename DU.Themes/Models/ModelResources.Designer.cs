@@ -79,7 +79,7 @@ namespace DU.Themes.Models {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No such user in system.
+        ///   Looks up a localized string similar to Nav tāda lietotāja.
         /// </summary>
         internal static string NoUser {
             get {
@@ -88,7 +88,7 @@ namespace DU.Themes.Models {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pieteikums ir apstiprinats.
+        ///   Looks up a localized string similar to Pieteikums ir apstiprināts.
         /// </summary>
         internal static string RequestStatus_Accepted {
             get {
@@ -115,7 +115,7 @@ namespace DU.Themes.Models {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vajag labojumi.
+        ///   Looks up a localized string similar to Nepieciešami labojumi.
         /// </summary>
         internal static string RequestStatus_NeedImprovements {
             get {
@@ -124,7 +124,7 @@ namespace DU.Themes.Models {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jauns Pieteikums.
+        ///   Looks up a localized string similar to Jauns pieteikums.
         /// </summary>
         internal static string RequestStatus_New {
             get {

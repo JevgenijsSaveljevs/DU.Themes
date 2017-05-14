@@ -124,10 +124,10 @@
     <value>Nepareizs lietotāja vārds/parole</value>
   </data>
   <data name="NoUser" xml:space="preserve">
-    <value>No such user in system</value>
+    <value>Nav tāda lietotāja</value>
   </data>
   <data name="RequestStatus_Accepted" xml:space="preserve">
-    <value>Pieteikums ir apstiprinats</value>
+    <value>Pieteikums ir apstiprināts</value>
   </data>
   <data name="RequestStatus_AcceptedBySupervisor" xml:space="preserve">
     <value>Accepted By Supervisor</value>
@@ -136,9 +136,9 @@
     <value>Pieteikums ir atcelts</value>
   </data>
   <data name="RequestStatus_NeedImprovements" xml:space="preserve">
-    <value>Vajag labojumi</value>
+    <value>Nepieciešami labojumi</value>
   </data>
   <data name="RequestStatus_New" xml:space="preserve">
-    <value>Jauns Pieteikums</value>
+    <value>Jauns pieteikums</value>
   </data>
 </root>

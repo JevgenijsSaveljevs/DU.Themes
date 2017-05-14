@@ -28,33 +28,26 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="@Url.Action("Index", "Request")"><b>Temas</b>DU</a>
+            <a href="@Url.Action("Index", "Request")">
+                <img src="~/assets/dist/logo.png" /></a>
         </div><!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg">Pieslēgties</p>
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary()
                 <div class="form-group has-feedback">
-                    @Html.TextBoxFor(m => m.LoginName, new { @class = "form-control", placeholder = "Student ID" })
+                    @Html.TextBoxFor(m => m.LoginName, new { @class = "form-control", placeholder = "Studenta ID" })
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Parole" })
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
-                    <div class="col-xs-8">
-                        <div class="checkbox icheck">
-                            <label>
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                Remember Me
-                            </label>
-                        </div>
-                    </div><!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Pieslēgties</button>
                     </div><!-- /.col -->
                 </div>
             }

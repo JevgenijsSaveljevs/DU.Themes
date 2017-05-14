@@ -9,7 +9,7 @@
     <link href="~/assets/dist/css/bundle.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
-<body class="hold-transition skin-blue-light sidebar-mini @Html.NavigationExpnaded(Request.Cookies)">
+<body class="skin-blue-light sidebar-mini @Html.NavigationExpnaded(Request.Cookies)">
     <!-- Site wrapper -->
     <div class="wrapper">
         <header class="main-header">
@@ -149,12 +149,10 @@
     <script type="text/javascript">
         $("body").on('expanded.pushMenu', function () {
             setCookie('Show-Navigation', true);
-            console.log('cookie', document.cookie);
         });
 
         $("body").on('collapsed.pushMenu', function () {
             setCookie('Show-Navigation', false);
-            console.log('cookie', document.cookie);
         });
     </script>
     @RenderSection("scripts", required: false)

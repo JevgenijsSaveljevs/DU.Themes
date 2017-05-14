@@ -9,3 +9,13 @@ i.fa, i.icon {
 textarea.form-control.resizeable {
     overflow-y: hidden;
 }
+
+.skin-blue-light .sidebar-menu > li.active > a {
+    color: #000;
+    background-color: #cfdde4
+}
+
+.skin-blue-light .sidebar-menu > li:hover > a {
+    color: #000;
+    background-color: #cfdde4
+}
