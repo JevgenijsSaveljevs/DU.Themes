@@ -2,6 +2,7 @@
     <div class="box" id="vue-app">
         <div class="box-header with-border">
             <div>
+                <h3>Lietotāji</h3>
             </div>
         </div>
         <div class="box-body">
@@ -42,7 +43,7 @@
                     { "data": "LastName" },
                     {
                         "sortable": false,
-                        render: function (data, type, row, meta) { return '<a href=' + "@Url.Action("Edit", "Maintenance")" + "/" + row.StudentIdentifier + ' class="btn btn-info">' + 'Edit' + '</a>'; }
+                        render: function (data, type, row, meta) { return '<a href=' + "@Url.Action("Edit", "Maintenance")" + "/" + row.StudentIdentifier + ' class="btn btn-info">' + '@Resources.Edit' + '</a>'; }
                     }
                 ]
             });

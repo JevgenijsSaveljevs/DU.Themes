@@ -5,7 +5,7 @@
                 <div class="box-header">
                     <h1 class="page-header"><i class="@Icons.Edit" aria-hidden="true"></i>@Resources.EditRequest</h1>
                     @*<small><b>Status: </b>New</small>*@
-                    <b>Status: </b><span v-text="entity.StatusRepresentation"></span>
+                    <b>@Resources.Status: </b><span v-text="entity.StatusRepresentation"></span>
                 </div>
                 <div class="box-body">
                     <div class="row">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="input-heading"><i class="@Icons.Calendar" aria-hidden="true"></i>@Resources.StartYear</label>
+                            <label class="input-heading"><i class="@Icons.Calendar" aria-hidden="true"></i>@Resources.StudyYearBeggining</label>
                             <div class="form-group">
                                 <select2 url="@Url.HttpRouteUrl(RouteName.StudyYears, new { })"
                                          :settings="select2Settings"
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="input-heading"><i class="@Icons.Calendar" aria-hidden="true"></i>@Resources.EndYear</label>
+                            <label class="input-heading"><i class="@Icons.Calendar" aria-hidden="true"></i>@Resources.StudyYearEnding</label>
                             <div class="form-group">
                                 <select2 url="@Url.HttpRouteUrl(RouteName.StudyYears, new { })"
                                          :settings="select2Settings"
@@ -146,7 +146,7 @@
                     submit: function () {
                         var self = this;
                         $.ajax({
-                            url: "@Url.HttpRouteUrl(RouteName.UpdateRequestStudent , new { })",
+                            url: "@Url.HttpRouteUrl(RouteName.UpdateRequestTeacher , new { })",
                             method: "POST",
                             data: JSON.stringify(self.entity),
                             contentType: "application/json; charset=utf-8"

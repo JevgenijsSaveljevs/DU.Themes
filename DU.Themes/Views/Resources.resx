@@ -127,10 +127,10 @@
     <value>Izveidots</value>
   </data>
   <data name="CreateYear" xml:space="preserve">
-    <value>Izveidot mācību gādu</value>
+    <value>Izveidot mācību gadu</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Dzest</value>
+    <value>Dzēst</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Rediģēt</value>
@@ -142,7 +142,7 @@
     <value>Vārds</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Uzvards</value>
+    <value>Uzvārds</value>
   </data>
   <data name="NoYearCreated" xml:space="preserve">
     <value>Nav neviena izveidota gāda</value>
@@ -160,22 +160,22 @@
     <value>Students</value>
   </data>
   <data name="StudentIdentifier" xml:space="preserve">
-    <value>Student Id</value>
+    <value>Studenta Id</value>
   </data>
   <data name="StudyYearBeggining" xml:space="preserve">
-    <value>Mācības gāda sakums</value>
+    <value>Mācību gada sākums</value>
   </data>
   <data name="StudyYearEnding" xml:space="preserve">
-    <value>Mācības gāda beigums</value>
+    <value>Mācību gada beigas</value>
   </data>
   <data name="Teacher" xml:space="preserve">
-    <value>Pasniedzejs</value>
+    <value>Pasniedzējs</value>
   </data>
   <data name="YearListHeading" xml:space="preserve">
-    <value>Mācību gādu saraksts</value>
+    <value>Mācību gadi</value>
   </data>
   <data name="YearName" xml:space="preserve">
-    <value>Gāds</value>
+    <value>Mācību gadi</value>
   </data>
   <data name="CancelRequest" xml:space="preserve">
     <value>Atcelt</value>
@@ -184,7 +184,7 @@
     <value>Izveidot tēmu</value>
   </data>
   <data name="NeedImprovements" xml:space="preserve">
-    <value>Vajag labojumi</value>
+    <value>Nepieciešami labojumi</value>
   </data>
   <data name="ThemeEng" xml:space="preserve">
     <value>Tēma Angliski</value>
@@ -193,10 +193,10 @@
     <value>Tēma Latviski</value>
   </data>
   <data name="DeleteTheme" xml:space="preserve">
-    <value>Dzest temu</value>
+    <value>Dzēst temu</value>
   </data>
   <data name="InactivateTheme" xml:space="preserve">
-    <value>Atzīmēt ka neaktivu</value>
+    <value>Atzīmēt kā neaktīvu</value>
   </data>
   <data name="ToList" xml:space="preserve">
     <value>Uz sarakstu</value>
@@ -217,7 +217,7 @@
     <value>Radit visus</value>
   </data>
   <data name="IsCurrentYear" xml:space="preserve">
-    <value>Tekošais mācibu gāds</value>
+    <value>Tekošais mācību gads</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Statuss</value>
@@ -233,5 +233,41 @@
   </data>
   <data name="EditTheme" xml:space="preserve">
     <value>Rediģēt tēmu</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importēt</value>
+  </data>
+  <data name="IsImported" xml:space="preserve">
+    <value>Importēts</value>
+  </data>
+  <data name="ProgramLevel" xml:space="preserve">
+    <value>Līmenis</value>
+  </data>
+  <data name="ProgramName" xml:space="preserve">
+    <value>Programma</value>
+  </data>
+  <data name="StudyForm" xml:space="preserve">
+    <value>Studiju veids</value>
+  </data>
+  <data name="StudyYear" xml:space="preserve">
+    <value>Mācību gads</value>
+  </data>
+  <data name="IsAdmin" xml:space="preserve">
+    <value>Administrātors</value>
+  </data>
+  <data name="IsCurrent" xml:space="preserve">
+    <value>Tekošais gads</value>
+  </data>
+  <data name="CreateRequest" xml:space="preserve">
+    <value>Izveidot pieteikumu</value>
+  </data>
+  <data name="NavigationRequests" xml:space="preserve">
+    <value>Pieteikumi</value>
+  </data>
+  <data name="NavigationThemes" xml:space="preserve">
+    <value>Tēmas</value>
   </data>
 </root>

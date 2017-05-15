@@ -8,7 +8,7 @@ namespace DU.Themes
         where T : StudyYear
     {
         public ExistingYear(DbContext context)
-            : base("Year Should be registred in system")
+            : base("Mācību gadam ir jābūt reģistrētam sistēmā")
         {
             this.Context = context;
         }

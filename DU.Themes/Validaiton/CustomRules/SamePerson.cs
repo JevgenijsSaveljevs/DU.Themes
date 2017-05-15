@@ -7,7 +7,7 @@ namespace DU.Themes
        where T : DU.Themes.Entities.Person
     {
         public SamePerson(PersonModel model)
-            : base("Persons Should be same")
+            : base("Nedrīkst mainīt pasniedzēju")
         {
             this.ToCompare = model;
         }

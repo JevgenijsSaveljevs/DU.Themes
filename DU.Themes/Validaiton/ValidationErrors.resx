@@ -117,16 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlreadyHasActive" xml:space="preserve">
+    <value>Studentam jau ir izveidots aktīvs pieteikums/tēma</value>
+  </data>
   <data name="EndLesserThanStart" xml:space="preserve">
-    <value>Begiuma datumam ir jābut mazakam neka Starta datumam</value>
+    <value>Mācību gada beigu datumam ir jābūt mazākam nekā sākuma datumam</value>
+  </data>
+  <data name="EndYear" xml:space="preserve">
+    <value>Beigu gada</value>
+  </data>
+  <data name="NotEmpty" xml:space="preserve">
+    <value>'{PropertyName}' lauks ir obligāts</value>
   </data>
   <data name="OnlyOneActiveTheme" xml:space="preserve">
-    <value>Only one Active Theme</value>
+    <value>Ir jābūt tikai vienai aktīvai tēmai</value>
+  </data>
+  <data name="StartYear" xml:space="preserve">
+    <value>Sākuma gada</value>
+  </data>
+  <data name="Students" xml:space="preserve">
+    <value>Studenta</value>
+  </data>
+  <data name="Teachers" xml:space="preserve">
+    <value>Pasniedzēja</value>
+  </data>
+  <data name="ThemeEng" xml:space="preserve">
+    <value>Tēma Angliski</value>
+  </data>
+  <data name="ThemeLv" xml:space="preserve">
+    <value>Tēma Latviski</value>
   </data>
   <data name="YearAlreadyExists" xml:space="preserve">
-    <value>sistemā jau ir reģistrēts mācibu gāds ar šadu gadu</value>
+    <value>Sistemā jau ir reģistrēts šāds mācību gads</value>
   </data>
   <data name="YearIsInUse" xml:space="preserve">
-    <value>šis gādz ir izmantots kaut kada ieraksta</value>
+    <value>Nevar izdēst,  jo šis gads tiek izmantots</value>
   </data>
 </root>

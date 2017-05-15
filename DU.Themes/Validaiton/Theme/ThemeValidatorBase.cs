@@ -13,11 +13,11 @@ namespace DU.Themes.Validaiton
         public ThemeValidatorBase(DbContext context)
             : base(context)
         {
-            this.RuleFor(x => x.Teacher).NotNull();
-            this.RuleFor(x => x.Student).NotNull();
+            this.RuleFor(x => x.Teacher).NotNull().WithName(ValidationErrors.Teachers).WithMessage(ValidationErrors.NotEmpty);
+            this.RuleFor(x => x.Student).NotNull().WithName(ValidationErrors.Students).WithMessage(ValidationErrors.NotEmpty);
 
-            this.RuleFor(x => x.ThemeENG).NotEmpty();
-            this.RuleFor(x => x.ThemeLV).NotEmpty();
+            this.RuleFor(x => x.ThemeENG).NotEmpty().WithName(ValidationErrors.ThemeEng).WithMessage(ValidationErrors.NotEmpty);
+            this.RuleFor(x => x.ThemeLV).NotEmpty().WithName(ValidationErrors.ThemeLv).WithMessage(ValidationErrors.NotEmpty);
 
             this.RuleFor(x => x.Start).MustBeExistingYear(context);
             this.RuleFor(x => x.End).MustBeExistingYear(context);

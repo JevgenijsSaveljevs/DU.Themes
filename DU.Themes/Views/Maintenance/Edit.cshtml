@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     var labelColumnClass = "col-sm-3 col-sm-12 col-xs-12";
     var inputColumnClass = "col-sm-9";
 }
@@ -11,60 +11,60 @@
             <div class="box-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label for="inputName" class="@labelColumnClass control-label">Vārds</label>
+                        <label for="inputName" class="@labelColumnClass control-label">@Resources.FirstName</label>
                         <div class="@inputColumnClass">
-                            <input type="text" class="form-control" id="inputName" placeholder="Vārds" v-model="entity.FirstName">
+                            <input type="text" class="form-control" id="inputName" placeholder="@Resources.FirstName" v-model="entity.FirstName">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputName" class="@labelColumnClass control-label">Uzvārds</label>
+                        <label for="inputName" class="@labelColumnClass control-label">@Resources.LastName</label>
                         <div class="@inputColumnClass">
-                            <input type="text" class="form-control" id="inputName" placeholder="Uzvārds" v-model="entity.LastName">
+                            <input type="text" class="form-control" id="inputName" placeholder="@Resources.LastName" v-model="entity.LastName">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputEmail" class="@labelColumnClass control-label">Email</label>
+                        <label for="inputEmail" class="@labelColumnClass control-label">@Resources.Email</label>
                         <div class="@inputColumnClass">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.Email">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="inputEmail" class="@labelColumnClass control-label">StudentIdentifier</label>
-                        <div class="@inputColumnClass">
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.StudentIdentifier">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="@Resources.Email" v-model="entity.Email">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputEmail" class="@labelColumnClass control-label">ProgramName</label>
+                        <label for="inputEmail" class="@labelColumnClass control-label">@Resources.StudentIdentifier</label>
                         <div class="@inputColumnClass">
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.ProgramName">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="@Resources.StudentIdentifier" v-model="entity.StudentIdentifier">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputEmail" class="@labelColumnClass control-label">ProgramLevel</label>
+                        <label for="inputEmail" class="@labelColumnClass control-label">@Resources.ProgramName</label>
                         <div class="@inputColumnClass">
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.ProgramLevel">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="@Resources.ProgramName" v-model="entity.ProgramName">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputEmail" class="@labelColumnClass control-label">StudyForm</label>
+                        <label for="inputEmail" class="@labelColumnClass control-label">@Resources.ProgramLevel</label>
                         <div class="@inputColumnClass">
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.StudyForm">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="@Resources.ProgramLevel" v-model="entity.ProgramLevel">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputEmail" class="@labelColumnClass control-label">Year</label>
+                        <label for="inputEmail" class="@labelColumnClass control-label">@Resources.StudyForm</label>
                         <div class="@inputColumnClass">
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" v-model="entity.Year">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="@Resources.StudyForm" v-model="entity.StudyForm">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="@labelColumnClass control-label">@Resources.StudyYear</label>
+                        <div class="@inputColumnClass">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="@Resources.StudyYear" v-model="entity.Year">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputEmail" class="@labelColumnClass control-label">Is Admin</label>
+                        <label for="inputEmail" class="@labelColumnClass control-label">@Resources.IsAdmin</label>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="entity.IsAdmin">
@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="inputEmail" class="@labelColumnClass control-label">Is Teacher</label>
+                        <label for="inputEmail" class="@labelColumnClass control-label">@Resources.Teacher</label>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="entity.IsTeacher">
@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="inputEmail" class="@labelColumnClass control-label">Is Student</label>
+                        <label for="inputEmail" class="@labelColumnClass control-label">@Resources.Student</label>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="entity.IsStudent">
@@ -94,7 +94,7 @@
             </div>
             <div class="box-footer">
                 <div class="pull-left">
-                    <a class="btn btn-default" href="@Url.Action("Persons", "Maintenance")">Cancel</a>
+                    <a href="@Url.Action("Persons", "Maintenance")" class="btn btn-default"><i class="@Icons.List" aria-hidden="true"></i>@Resources.ToList</a>
                 </div>
                 <div class="pull-right">
                     <button type="button" class="btn btn-info" v-on:click="submit">@Resources.Save</button>
@@ -161,7 +161,7 @@
                             contentType: "application/json; UTF8",
                         }).done(function (data) {
                             self.entity = data;
-                            toastr.success("Saglabats");
+                            toastr.success("Saglabāts");
                         }).error(function (xhr, param1, param2, param3) {
                             toastr.error(param2);
                             console.log(xhr, param1, param2, param3);

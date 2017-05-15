@@ -53,6 +53,7 @@ namespace DU.Themes.Controllers
             }
         }
 
+        ////[ExcelValidation]
         // GET: Maintenance
         [Authorize(Roles = Roles.SystemAdministrator)]
         [HttpGet]
@@ -61,6 +62,7 @@ namespace DU.Themes.Controllers
             return View();
         }
 
+        ////[ExcelValidation]
         [Authorize(Roles = Roles.SystemAdministrator)]
         [HttpPost]
         public async Task<ActionResult> Upload()

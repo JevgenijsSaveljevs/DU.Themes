@@ -9,16 +9,15 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>FirstName</th>
-                                <th>LastName</th>
-                                <th>StudentIdentifier</th>
-                                <th>ProgramName</th>
-                                <th>ProgramLevel</th>
-                                <th>StudyForm</th>
-                                <th>Email</th>
-                                <th>UserName</th>
-                                <th>FullName</th>
-                                <th>Is Imported</th>
+                                <th>@Resources.FirstName</th>
+                                <th>@Resources.LastName</th>
+                                <th>@Resources.StudentIdentifier</th>
+                                <th>@Resources.ProgramName</th>
+                                <th>@Resources.ProgramLevel</th>
+                                <th>@Resources.StudyForm</th>
+                                <th>@Resources.StudyYear</th>
+                                <th>@Resources.Email</th>
+                                <th>@Resources.IsImported</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,9 +30,8 @@
                                     <td>@person.ProgramName</td>
                                     <td>@person.ProgramLevel</td>
                                     <td>@person.StudyForm</td>
+                                    <td>@person.Year</td>
                                     <td>@person.Email</td>
-                                    <td>@person.UserName</td>
-                                    <td>@person.FullName</td>
                                     @if (person.SuccessfulyImported)
                                     {
                                         <td><i class="text-green glyphicon glyphicon glyphicon-ok">&nbsp;</i></td>

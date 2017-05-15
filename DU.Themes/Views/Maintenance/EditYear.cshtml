@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div class="box box-info">
             <div class="box-header with-border">
-                <h1>@Resources.Edit</h1>
+                <h3>@Resources.Edit</h3>
             </div>
             <div class="box-body">
 
@@ -32,7 +32,7 @@
             </div>
             <div class="box-footer">
                 <div class="pull-left">
-                    <a class="btn btn-default" href="@Url.Action("Persons", "Maintenance")">Cancel</a>
+                    <a href="@Url.Action("StudyYearsList", "Maintenance")" class="btn btn-default"><i class="@Icons.List" aria-hidden="true"></i>@Resources.ToList</a>
                     <button class="btn btn-success" v-on:click="remove">@Resources.Delete</button>
                 </div>
                 <div class="pull-right">
@@ -134,7 +134,7 @@
                         data: JSON.stringify(self.entity),
                         contentType: "application/json; charset=utf-8"
                     }).done(function (data) {
-                                //self.refresh();
+                        navigation.redirect("@Url.Action("StudyYearsList", "Maintenance")");
                             })
                     .error(handleError)
                     .always(function () {

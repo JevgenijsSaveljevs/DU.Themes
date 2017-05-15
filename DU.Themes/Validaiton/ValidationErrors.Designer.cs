@@ -61,7 +61,16 @@ namespace DU.Themes.Validaiton {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Begiuma datumam ir jābut mazakam neka Starta datumam.
+        ///   Looks up a localized string similar to Studentam jau ir izveidots aktīvs pieteikums/tēma.
+        /// </summary>
+        internal static string AlreadyHasActive {
+            get {
+                return ResourceManager.GetString("AlreadyHasActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mācību gada beigu datumam ir jābūt mazākam nekā sākuma datumam.
         /// </summary>
         internal static string EndLesserThanStart {
             get {
@@ -70,7 +79,25 @@ namespace DU.Themes.Validaiton {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only one Active Theme.
+        ///   Looks up a localized string similar to Beigu gada.
+        /// </summary>
+        internal static string EndYear {
+            get {
+                return ResourceManager.GetString("EndYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{PropertyName}&apos; lauks ir obligāts.
+        /// </summary>
+        internal static string NotEmpty {
+            get {
+                return ResourceManager.GetString("NotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ir jābūt tikai vienai aktīvai tēmai.
         /// </summary>
         internal static string OnlyOneActiveTheme {
             get {
@@ -79,7 +106,52 @@ namespace DU.Themes.Validaiton {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to sistemā jau ir reģistrēts mācibu gāds ar šadu gadu.
+        ///   Looks up a localized string similar to Sākuma gada.
+        /// </summary>
+        internal static string StartYear {
+            get {
+                return ResourceManager.GetString("StartYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Studenta.
+        /// </summary>
+        internal static string Students {
+            get {
+                return ResourceManager.GetString("Students", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pasniedzēja.
+        /// </summary>
+        internal static string Teachers {
+            get {
+                return ResourceManager.GetString("Teachers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tēma Angliski.
+        /// </summary>
+        internal static string ThemeEng {
+            get {
+                return ResourceManager.GetString("ThemeEng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tēma Latviski.
+        /// </summary>
+        internal static string ThemeLv {
+            get {
+                return ResourceManager.GetString("ThemeLv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sistemā jau ir reģistrēts šāds mācību gads.
         /// </summary>
         internal static string YearAlreadyExists {
             get {
@@ -88,7 +160,7 @@ namespace DU.Themes.Validaiton {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to šis gādz ir izmantots kaut kada ieraksta.
+        ///   Looks up a localized string similar to Nevar izdēst,  jo šis gads tiek izmantots.
         /// </summary>
         internal static string YearIsInUse {
             get {

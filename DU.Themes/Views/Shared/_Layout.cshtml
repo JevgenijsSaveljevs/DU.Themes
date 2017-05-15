@@ -18,7 +18,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>DU</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Daugavpils</b>University</span>
+                <span class="logo-lg"><b>Daugavpils</b>Universitāte</span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -87,7 +87,7 @@
                                                 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
                                                 {
                                                     @Html.AntiForgeryToken()
-                                                    <button type="submit" style="width: 100%" class="btn btn-default btn-flat"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</button>
+                                                    <button type="submit" style="width: 100%" class="btn btn-default btn-flat"><i class="fa fa-sign-out" aria-hidden="true"></i> Iziet</button>
                                                 }
                                             </li>
                                         </ul>
@@ -115,19 +115,19 @@
                 <ul class="sidebar-menu">
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Teacher))
                     {
-                        <li class="@Html.AddActiveClassIfRoutesMatch("TeacherRequests", "Request")"><a href="@Url.Action("TeacherRequests", "Request")"><i class="fa fa-user-plus text-aqua" aria-hidden="true"></i><span>Requests (Lecturers)</span></a></li>
-                        <li class="@Html.AddActiveClassIfRoutesMatch("Teacher", "Themes")"><a href="@Url.Action("Teacher", "Themes")"><i class="fa fa-address-card-o text-aqua" aria-hidden="true"></i><span>Themes (Lecturers)</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("TeacherRequests", "Request")"><a href="@Url.Action("TeacherRequests", "Request")"><i class="fa fa-user-plus text-aqua" aria-hidden="true"></i><span>@Resources.NavigationRequests</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Teacher", "Themes")"><a href="@Url.Action("Teacher", "Themes")"><i class="fa fa-address-card-o text-aqua" aria-hidden="true"></i><span>@Resources.NavigationThemes</span></a></li>
                     }
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.Student))
                     {
-                        <li class="@Html.AddActiveClassIfRoutesMatch("Index", "Request")"><a href="@Url.Action("Index", "Request")"><i class="fa fa-user-plus text-aqua" aria-hidden="true"></i> <span>Request (Students)</span></a></li>
-                        <li class="@Html.AddActiveClassIfRoutesMatch("Student", "Themes")"><a href="@Url.Action("Student", "Themes")"><i class="fa fa-address-card-o text-aqua" aria-hidden="true"></i> <span>Themes (Students)</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Index", "Request")"><a href="@Url.Action("Index", "Request")"><i class="fa fa-user-plus text-aqua" aria-hidden="true"></i> <span>@Resources.NavigationRequests</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Student", "Themes")"><a href="@Url.Action("Student", "Themes")"><i class="fa fa-address-card-o text-aqua" aria-hidden="true"></i> <span>@Resources.NavigationThemes</span></a></li>
                     }
                     @if (User.IsInRole(DU.Themes.Infrastructure.Roles.SystemAdministrator))
                     {
-                        <li class="@Html.AddActiveClassIfRoutesMatch("Import", "Maintenance")"><a href="@Url.Action("Import", "Maintenance")"><i class="fa fa-upload text-aqua" aria-hidden="true"></i> <span>Import</span></a></li>
-                        <li class="@Html.AddActiveClassIfRoutesMatch("Persons", "Maintenance")"><a href="@Url.Action("Persons", "Maintenance")"><i class="fa fa-users text-aqua" aria-hidden="true"></i> <span>Users</span></a></li>
-                        <li class="@Html.AddActiveClassIfRoutesMatch("StudyYearsList", "Maintenance")"><a href="@Url.Action("StudyYearsList", "Maintenance")"><i class="fa fa-calendar text-aqua" aria-hidden="true"></i> <span>Macibu gadi</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Import", "Maintenance")"><a href="@Url.Action("Import", "Maintenance")"><i class="fa fa-upload text-aqua" aria-hidden="true"></i> <span>Imports</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("Persons", "Maintenance")"><a href="@Url.Action("Persons", "Maintenance")"><i class="fa fa-users text-aqua" aria-hidden="true"></i> <span>Lietotāji</span></a></li>
+                        <li class="@Html.AddActiveClassIfRoutesMatch("StudyYearsList", "Maintenance")"><a href="@Url.Action("StudyYearsList", "Maintenance")"><i class="fa fa-calendar text-aqua" aria-hidden="true"></i> <span>Mācību gadi</span></a></li>
                     }
                 </ul>
             </section>

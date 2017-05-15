@@ -97,6 +97,15 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Izveidot pieteikumu.
+        /// </summary>
+        public static string CreateRequest {
+            get {
+                return ResourceManager.GetString("CreateRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Izveidot tēmu.
         /// </summary>
         public static string CreateTheme {
@@ -106,7 +115,7 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Izveidot mācību gādu.
+        ///   Looks up a localized string similar to Izveidot mācību gadu.
         /// </summary>
         public static string CreateYear {
             get {
@@ -115,7 +124,7 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dzest.
+        ///   Looks up a localized string similar to Dzēst.
         /// </summary>
         public static string Delete {
             get {
@@ -124,7 +133,7 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dzest temu.
+        ///   Looks up a localized string similar to Dzēst temu.
         /// </summary>
         public static string DeleteTheme {
             get {
@@ -156,6 +165,15 @@ namespace DU.Themes.Views {
         public static string EditTheme {
             get {
                 return ResourceManager.GetString("EditTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
@@ -196,7 +214,16 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Atzīmēt ka neaktivu.
+        ///   Looks up a localized string similar to Importēt.
+        /// </summary>
+        public static string Import {
+            get {
+                return ResourceManager.GetString("Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Atzīmēt kā neaktīvu.
         /// </summary>
         public static string InactivateTheme {
             get {
@@ -205,7 +232,25 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tekošais mācibu gāds.
+        ///   Looks up a localized string similar to Administrātors.
+        /// </summary>
+        public static string IsAdmin {
+            get {
+                return ResourceManager.GetString("IsAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tekošais gads.
+        /// </summary>
+        public static string IsCurrent {
+            get {
+                return ResourceManager.GetString("IsCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tekošais mācību gads.
         /// </summary>
         public static string IsCurrentYear {
             get {
@@ -214,7 +259,16 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uzvards.
+        ///   Looks up a localized string similar to Importēts.
+        /// </summary>
+        public static string IsImported {
+            get {
+                return ResourceManager.GetString("IsImported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uzvārds.
         /// </summary>
         public static string LastName {
             get {
@@ -232,7 +286,25 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vajag labojumi.
+        ///   Looks up a localized string similar to Pieteikumi.
+        /// </summary>
+        public static string NavigationRequests {
+            get {
+                return ResourceManager.GetString("NavigationRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tēmas.
+        /// </summary>
+        public static string NavigationThemes {
+            get {
+                return ResourceManager.GetString("NavigationThemes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nepieciešami labojumi.
         /// </summary>
         public static string NeedImprovements {
             get {
@@ -255,6 +327,24 @@ namespace DU.Themes.Views {
         public static string NoYearCreated {
             get {
                 return ResourceManager.GetString("NoYearCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Līmenis.
+        /// </summary>
+        public static string ProgramLevel {
+            get {
+                return ResourceManager.GetString("ProgramLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Programma.
+        /// </summary>
+        public static string ProgramName {
+            get {
+                return ResourceManager.GetString("ProgramName", resourceCulture);
             }
         }
         
@@ -313,7 +403,7 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Student Id.
+        ///   Looks up a localized string similar to Studenta Id.
         /// </summary>
         public static string StudentIdentifier {
             get {
@@ -322,7 +412,25 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mācības gāda sakums.
+        ///   Looks up a localized string similar to Studiju veids.
+        /// </summary>
+        public static string StudyForm {
+            get {
+                return ResourceManager.GetString("StudyForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mācību gads.
+        /// </summary>
+        public static string StudyYear {
+            get {
+                return ResourceManager.GetString("StudyYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mācību gada sākums.
         /// </summary>
         public static string StudyYearBeggining {
             get {
@@ -331,7 +439,7 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mācības gāda beigums.
+        ///   Looks up a localized string similar to Mācību gada beigas.
         /// </summary>
         public static string StudyYearEnding {
             get {
@@ -340,7 +448,7 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pasniedzejs.
+        ///   Looks up a localized string similar to Pasniedzējs.
         /// </summary>
         public static string Teacher {
             get {
@@ -394,7 +502,7 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mācību gādu saraksts.
+        ///   Looks up a localized string similar to Mācību gadi.
         /// </summary>
         public static string YearListHeading {
             get {
@@ -403,7 +511,7 @@ namespace DU.Themes.Views {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gāds.
+        ///   Looks up a localized string similar to Mācību gadi.
         /// </summary>
         public static string YearName {
             get {

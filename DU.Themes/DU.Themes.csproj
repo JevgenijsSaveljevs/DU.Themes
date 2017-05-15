@@ -258,6 +258,7 @@
     <Compile Include="Data\TypeConfigurations\ThemeConfiguration.cs" />
     <Compile Include="Data\TypeConfigurations\UserRoleConfiguration.cs" />
     <Compile Include="ErrorHandlingAttribute.cs" />
+    <Compile Include="ExcelValidationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -491,6 +492,7 @@
     <EmbeddedResource Include="Views\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

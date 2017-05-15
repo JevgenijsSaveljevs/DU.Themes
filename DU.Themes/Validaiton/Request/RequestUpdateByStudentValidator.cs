@@ -18,7 +18,7 @@ namespace DU.Themes.Validaiton.Request
                 return null;
             }
 
-            return new ValidationFailure("Status", "TODO: New or Need Improvements");
+            return new ValidationFailure("Status", "Nav iespējams saglabāt jau atceltu pieteikumu");
         }
     }
 }
